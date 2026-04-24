@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>노써치 · 지금 추천하는 제품을 바로 확인하세요</title>
+<meta name="description" content="지금도 변화하고 있는 제품 추천. 노써치 CM이 실시간으로 갱신하는 큐레이션을 확인하세요." />
+<style>
+  /* ========= Brand Tokens ========= */
+  :root {
+    --primary: #256FFF;
+    --blue-light: #E8F2FF;
+    --blue-pale: #F5F9FF;
+    --accent-red: #FF455B;
+    --success: #16A34A;
+    --success-light: #DCFCE7;
+    --warning: #F59E0B;
+    --gray-10: #1A1A1A;
+    --gray-dark: #545454;
+    --gray-7: #787878;
+    --gray-5: #B3B3B3;
+    --gray-4: #C8C8C8;
+    --gray-3: #DFDFDF;
+    --border: #E5E7EB;
+    --gray-subtle: #EFEFEF;
+    --white: #FFFFFF;
+    --gray-1: #F9F9F9;
+    --ivory: #FAF9F5;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+                 'Segoe UI', Roboto, Arial, sans-serif;
+    color: var(--gray-10); background: var(--gray-1);
+    line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+  /* ========= Top Bar ========= */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-inner {
+    display: flex; align-items: center; gap: 20px;
+    height: 64px;
+    line-height: 1;
+  }
+  .logo {
+    font-size: 20px; font-weight: 800; letter-spacing: -0.03em;
+    color: var(--primary);
+    display: inline-flex; align-items: center; gap: 6px;
+    line-height: 1;
+    flex-shrink: 0;
+    height: 32px;
+  }
+  .logo-sub {
+    font-size: 11px; font-weight: 700; color: var(--gray-5);
+    letter-spacing: 0; text-transform: uppercase;
+    line-height: 1;
+    transform: translateY(1px);
+  }
+  .top-nav {
+    margin-left: auto;
+    display: flex; gap: 28px; align-items: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .top-nav a {
+    font-size: 14px; font-weight: 600; color: var(--gray-dark);
+    line-height: 1;
+    display: inline-flex; align-items: center; gap: 6px;
+    height: 32px;
+    transition: color .15s ease;
+  }
+  .top-nav a:hover { color: var(--primary); }
+  .nav-live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent-red);
+    animation: livePulse 1.4s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  .nav-live-label {
+    font-size: 10px; font-weight: 800; color: var(--accent-red);
+    letter-spacing: 0.04em;
+    margin-left: 2px;
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255,69,91,0.6); }
+    50% { opacity: 0.6; transform: scale(1.15); box-shadow: 0 0 0 6px rgba(255,69,91,0); }
+  }
+
+  @media (max-width: 768px) {
+    .topbar-inner { gap: 12px; }
+    .top-nav { gap: 18px; }
+    .top-nav a { font-size: 13px; }
+    .nav-live-label { display: none; }
+  }
+  @media (max-width: 480px) {
+    .top-nav { gap: 14px; }
+    .top-nav a { font-size: 12.5px; }
+  }
+
+  /* ========= Hero ========= */
+  .hero {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 0 56px;
+  }
+  .hero-title {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.025em;
+    color: var(--gray-10); margin-bottom: 8px;
+  }
+  .hero-title em { color: var(--primary); font-style: normal; }
+  .hero-sub {
+    font-size: 15px; color: var(--gray-dark);
+    margin-bottom: 28px;
+  }
+  .search {
+    display: flex; align-items: center; gap: 14px;
+    height: 64px; padding: 0 14px 0 12px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    transition: border-color .15s ease, box-shadow .2s ease;
+    margin-bottom: 36px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  }
+  .search:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37,111,255,0.12), 0 2px 8px rgba(15, 23, 42, 0.06);
+  }
+  .search input {
+    flex: 1; border: none; background: transparent; outline: none;
+    font-size: 16px; color: var(--gray-10); font-family: inherit;
+    min-width: 0;
+  }
+  .search input::placeholder { color: var(--gray-5); }
+  .search-kbd {
+    font-size: 11px; color: var(--gray-7);
+    padding: 4px 8px; border-radius: 6px;
+    background: var(--gray-1); border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .ai-badge {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #256FFF 0%, #6D43D6 55%, #FF455B 110%);
+    display: grid; place-items: center;
+    color: #FFFFFF;
+    box-shadow:
+      0 4px 12px rgba(37,111,255,0.28),
+      inset 0 0 0 1px rgba(255,255,255,0.14);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-badge::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55), transparent 45%);
+    pointer-events: none;
+  }
+  .ai-badge svg {
+    width: 22px; height: 22px;
+    color: #FFFFFF;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.4));
+    animation: aiSparkle 2.8s ease-in-out infinite;
+  }
+  @keyframes aiSparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50%      { transform: scale(1.08) rotate(6deg); opacity: 0.92; }
+  }
+  .ai-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 8px; border-radius: 999px;
+    background: linear-gradient(135deg, var(--blue-light), #F3EEFF);
+    color: var(--primary);
+    font-size: 11px; font-weight: 800; letter-spacing: 0.04em;
+    flex-shrink: 0;
+    border: 1px solid rgba(37,111,255,0.2);
+  }
+  .ai-tag::before {
+    content: ""; width: 5px; height: 5px; border-radius: 50%;
+    background: linear-gradient(135deg, #256FFF, #6D43D6);
+    box-shadow: 0 0 6px rgba(109,67,214,0.5);
+    animation: livePulse 2s ease-in-out infinite;
+  }
+
+  @media (max-width: 560px) {
+    .search { height: 58px; gap: 10px; padding: 0 10px; }
+    .ai-badge { width: 36px; height: 36px; border-radius: 10px; }
+    .ai-badge svg { width: 20px; height: 20px; }
+    .ai-tag { display: none; }
+  }
+
+  .hero-split {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .hero-col {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px 22px;
+  }
+  .hero-col-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .hero-col-title {
+    font-size: 14px; font-weight: 700; color: var(--gray-10);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-col-title .ico { font-size: 16px; }
+  .hero-col-tick {
+    font-size: 11px; color: var(--gray-7);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .hero-col-tick .live-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent-red);
+    animation: livePulse 1.4s ease-in-out infinite;
+  }
+
+  .hero-item {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding: 10px 0;
+    border-bottom: 1px solid var(--gray-subtle);
+  }
+  .hero-item:last-child { border-bottom: none; }
+  .hero-item-left {
+    display: flex; align-items: baseline; gap: 10px; min-width: 0;
+  }
+  .hero-item-rank {
+    font-size: 13px; font-weight: 800; color: var(--gray-5);
+    min-width: 16px;
+  }
+  .hero-item-name {
+    font-size: 14px; font-weight: 600; color: var(--gray-10);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .hero-item-signal {
+    font-size: 12px; color: var(--gray-7);
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .trend-up { color: var(--accent-red); font-weight: 700; }
+  .trend-down { color: var(--primary); font-weight: 700; }
+  .trend-neutral { color: var(--gray-dark); }
+
+  @media (max-width: 768px) {
+    .hero { padding: 32px 0; }
+    .hero-title { font-size: 24px; }
+    .hero-split { grid-template-columns: 1fr; }
+  }
+
+  /* ========= Section Base ========= */
+  section.block { padding: 48px 0; }
+  .block-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 20px; margin-bottom: 24px;
+  }
+  .block-title-wrap {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .block-eyebrow {
+    font-size: 12px; font-weight: 700; color: var(--primary);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .block-title {
+    font-size: 24px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--gray-10);
+  }
+  .block-sub {
+    font-size: 13px; color: var(--gray-7);
+  }
+  .block-more {
+    font-size: 13px; color: var(--gray-dark); font-weight: 500;
+    display: inline-flex; align-items: center; gap: 4px;
+    white-space: nowrap;
+  }
+  .block-more:hover { color: var(--primary); }
+
+  /* ========= Carousel (재사용) ========= */
+  .carousel-wrap { position: relative; }
+  .carousel-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 4px 18px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gray-3) transparent;
+  }
+  .carousel-scroll::-webkit-scrollbar { height: 8px; }
+  .carousel-scroll::-webkit-scrollbar-track { background: transparent; }
+  .carousel-scroll::-webkit-scrollbar-thumb { background: var(--gray-3); border-radius: 999px; }
+  .carousel-btn {
+    position: absolute; top: 42%; transform: translateY(-50%);
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--white); border: 1px solid var(--border);
+    box-shadow: 0 6px 18px rgba(15,23,42,0.08);
+    display: grid; place-items: center;
+    z-index: 5; cursor: pointer;
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .carousel-btn:hover {
+    border-color: var(--primary); color: var(--primary);
+    transform: translateY(-50%) scale(1.05);
+  }
+  .carousel-btn.prev { left: -18px; }
+  .carousel-btn.next { right: -18px; }
+  .carousel-btn svg { width: 18px; height: 18px; stroke: currentColor; }
+  @media (max-width: 768px) {
+    .carousel-btn { display: none; }
+  }
+
+  /* ========= 최근 업데이트 (캐러셀 카드) ========= */
+  .update-card {
+    flex: 0 0 calc((100% - 32px) / 3);
+    scroll-snap-align: start;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    display: flex; flex-direction: column;
+  }
+  .update-card:hover {
+    transform: translateY(-2px); border-color: var(--primary);
+    box-shadow: 0 8px 24px rgba(26,26,26,0.06);
+  }
+  .update-img {
+    aspect-ratio: 16/10; background: var(--gray-1);
+    overflow: hidden; position: relative;
+  }
+  .update-img img { width: 100%; height: 100%; object-fit: cover; }
+  .update-img .fallback-emoji {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    background: var(--gray-1); font-size: 54px;
+  }
+  .update-badge {
+    position: absolute; top: 12px; left: 12px;
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 5px 10px; border-radius: 6px;
+    background: rgba(26,26,26,0.88); color: var(--white);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .update-badge.fresh { background: var(--accent-red); }
+  .update-body { padding: 18px 20px 22px; }
+  .update-title {
+    font-size: 16px; font-weight: 700; color: var(--gray-10);
+    margin-bottom: 8px;
+  }
+  .update-meta {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    font-size: 12px; color: var(--gray-7);
+    margin-bottom: 12px;
+  }
+  .update-meta span { display: inline-flex; align-items: center; gap: 4px; }
+  .update-reason {
+    padding: 10px 12px; background: var(--blue-pale);
+    border-radius: 8px; font-size: 12.5px; color: var(--gray-dark);
+    line-height: 1.5;
+  }
+  .update-reason strong { color: var(--primary); font-weight: 700; }
+  @media (max-width: 960px) { .update-card { flex-basis: calc((100% - 16px) / 2); } }
+  @media (max-width: 560px) { .update-card { flex-basis: 86%; } }
+
+  /* ========= 최저가 변동 (캐러셀 카드) ========= */
+  .rising-card {
+    flex: 0 0 calc((100% - 48px) / 4);
+    scroll-snap-align: start;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px;
+    transition: border-color .15s ease, transform .15s ease;
+    display: flex; flex-direction: column;
+  }
+  .rising-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+  .rising-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .rising-thumb {
+    width: 56px; height: 56px; border-radius: 10px;
+    background: var(--gray-1); overflow: hidden; position: relative;
+  }
+  .rising-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .rising-thumb .fallback-emoji {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    background: var(--gray-1); font-size: 24px;
+  }
+  .rising-metric {
+    text-align: right;
+  }
+  .rising-metric strong {
+    font-size: 18px; font-weight: 800; color: var(--accent-red);
+    letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 2px; justify-content: flex-end;
+  }
+  .rising-metric span {
+    font-size: 11px; color: var(--gray-7); display: block;
+  }
+  .rising-cat {
+    font-size: 11px; color: var(--primary); font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .rising-name {
+    font-size: 15px; font-weight: 700; color: var(--gray-10);
+    margin-bottom: 10px; line-height: 1.35;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    min-height: 40px;
+  }
+  .rising-reason {
+    font-size: 12.5px; color: var(--gray-dark); line-height: 1.5;
+    padding-top: 10px; border-top: 1px solid var(--gray-subtle);
+  }
+  .rising-price {
+    display: flex; align-items: baseline; gap: 8px;
+    margin-bottom: 10px;
+    padding: 10px 12px; border-radius: 10px;
+    background: #FFF4F6;
+    border: 1px solid #FFDCDF;
+  }
+  .rising-price .now {
+    font-size: 17px; font-weight: 800; color: var(--accent-red);
+    letter-spacing: -0.02em;
+  }
+  .rising-price .prev {
+    font-size: 12px; color: var(--gray-7);
+    text-decoration: line-through;
+  }
+  .rising-price .delta {
+    margin-left: auto; font-size: 11px; font-weight: 700;
+    color: var(--accent-red);
+    background: var(--white); border: 1px solid #FFDCDF;
+    padding: 2px 8px; border-radius: 999px;
+  }
+  .rising-signal {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; font-weight: 700;
+    color: var(--accent-red);
+    background: #FFE9EC;
+    padding: 3px 8px; border-radius: 6px;
+    margin-bottom: 8px;
+    align-self: flex-start;
+  }
+  @media (max-width: 1024px) { .rising-card { flex-basis: calc((100% - 32px) / 3); } }
+  @media (max-width: 768px) { .rising-card { flex-basis: calc((100% - 16px) / 2); } }
+  @media (max-width: 560px) { .rising-card { flex-basis: 82%; } }
+
+  /* ========= IN THE LAB ========= */
+  .lab {
+    background: var(--gray-10); color: var(--white);
+    border-radius: 16px; padding: 36px;
+    position: relative; overflow: hidden;
+  }
+  .lab::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(37,111,255,0.18), transparent 40%),
+      radial-gradient(circle at 15% 80%, rgba(255,69,91,0.1), transparent 45%);
+    pointer-events: none;
+  }
+  .lab-inner { position: relative; z-index: 1; }
+  .lab-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 20px; margin-bottom: 28px;
+  }
+  .lab-title {
+    font-size: 22px; font-weight: 800; letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .lab-sub { font-size: 13px; color: rgba(255,255,255,0.7); }
+  .lab-eyebrow {
+    font-size: 12px; font-weight: 700; color: #6FA8FF;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .lab-eyebrow .live-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #6FA8FF;
+    animation: livePulse 1.4s ease-in-out infinite;
+  }
+
+  .lab-list {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+  }
+  .lab-item {
+    display: grid;
+    grid-template-columns: 42px 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 6px 14px;
+    padding: 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    align-items: center;
+  }
+  .lab-icon {
+    grid-row: 1 / 3;
+    width: 42px; height: 42px; border-radius: 10px;
+    background: rgba(111,168,255,0.18); color: #6FA8FF;
+    display: grid; place-items: center; font-size: 20px;
+  }
+  .lab-item-body .lab-item-title {
+    font-size: 14px; font-weight: 700; margin-bottom: 3px;
+  }
+  .lab-item-body .lab-item-sub {
+    font-size: 12px; color: rgba(255,255,255,0.6);
+  }
+  .lab-progress {
+    width: 72px; text-align: right;
+  }
+  .lab-progress-bar {
+    height: 4px; width: 72px; background: rgba(255,255,255,0.12);
+    border-radius: 999px; overflow: hidden; margin-bottom: 4px;
+  }
+  .lab-progress-bar i {
+    display: block; height: 100%; background: #6FA8FF;
+    border-radius: 999px;
+  }
+  .lab-progress span {
+    font-size: 11px; color: rgba(255,255,255,0.65);
+  }
+  .lab-notify-btn {
+    grid-column: 1 / 4;
+    margin-top: 4px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(111,168,255,0.12);
+    border: 1px solid rgba(111,168,255,0.35);
+    color: #BFD7FF;
+    font-size: 12.5px; font-weight: 700;
+    transition: background .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .lab-notify-btn:hover {
+    background: rgba(111,168,255,0.22);
+    color: var(--white);
+    border-color: #6FA8FF;
+    transform: translateY(-1px);
+  }
+  .lab-notify-btn svg { width: 14px; height: 14px; }
+
+  @media (max-width: 720px) {
+    .lab { padding: 28px 22px; }
+    .lab-list { grid-template-columns: 1fr; }
+  }
+
+  /* ========= 카테고리 (탭 전환형) ========= */
+  .cat-tab-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .cat-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--border);
+    background: var(--gray-1);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .cat-tabs::-webkit-scrollbar { display: none; }
+  .cat-tab {
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: transparent;
+    font-size: 13.5px; font-weight: 600;
+    color: var(--gray-dark);
+    white-space: nowrap;
+    transition: background .15s ease, color .15s ease;
+    border: 1px solid transparent;
+  }
+  .cat-tab .ico { font-size: 16px; line-height: 1; }
+  .cat-tab:hover {
+    background: var(--white);
+    color: var(--gray-10);
+  }
+  .cat-tab.active {
+    background: var(--gray-10);
+    color: var(--white);
+    font-weight: 700;
+  }
+  .cat-tab .count {
+    font-size: 11px; font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.06);
+    color: var(--gray-7);
+    margin-left: 2px;
+  }
+  .cat-tab.active .count {
+    background: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.85);
+  }
+
+  .cat-panel {
+    display: none;
+    padding: 28px 32px 32px;
+  }
+  .cat-panel.active { display: block; }
+  .cat-panel-head {
+    display: flex; align-items: baseline; gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--gray-subtle);
+  }
+  .cat-panel-title {
+    font-size: 16px; font-weight: 800; color: var(--gray-10);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cat-panel-desc {
+    font-size: 12.5px; color: var(--gray-7);
+  }
+  .cat-chips {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .cat-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 16px;
+    background: var(--gray-1);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13.5px; font-weight: 600;
+    color: var(--gray-10);
+    transition: background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
+  }
+  .cat-chip:hover {
+    background: var(--blue-pale);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-1px);
+  }
+  .cat-chip .dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent-red);
+    animation: livePulse 1.4s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 540px) {
+    .cat-panel { padding: 22px 20px; }
+    .cat-chip { padding: 8px 14px; font-size: 13px; }
+  }
+
+  /* ========= Footer ========= */
+  footer {
+    padding: 56px 0 40px;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+  }
+  .foot-main {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 48px; flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .foot-brand { max-width: 380px; }
+  .foot-brand .logo { margin-bottom: 14px; font-size: 20px; }
+  .foot-brand p {
+    font-size: 13px; color: var(--gray-7); line-height: 1.7;
+  }
+  .foot-links {
+    display: flex; gap: 56px; flex-wrap: wrap;
+  }
+  .foot-col h4 {
+    font-size: 12.5px; font-weight: 800; color: var(--gray-10);
+    margin-bottom: 14px; letter-spacing: 0.02em;
+  }
+  .foot-col a {
+    display: block; font-size: 13px; color: var(--gray-dark);
+    margin-bottom: 10px; transition: color .15s ease;
+  }
+  .foot-col a:hover { color: var(--primary); }
+  .foot-bottom {
+    padding-top: 24px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+    font-size: 12px; color: var(--gray-7);
+  }
+  .foot-bottom .foot-legal { color: var(--gray-5); }
+  .foot-bottom a { color: var(--gray-dark); }
+  .foot-bottom a:hover { color: var(--gray-10); }
+  @media (max-width: 768px) {
+    .foot-main { flex-direction: column; gap: 32px; }
+    .foot-links { gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== TOP BAR ========== -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="#top" class="logo" aria-label="노써치">
+      노써치<span class="logo-sub">nosearch</span>
+    </a>
+
+    <nav class="top-nav" aria-label="메인 네비게이션">
+      <a href="#updates">
+        <span class="nav-live-dot" aria-hidden="true"></span>
+        최근 업데이트
+        <span class="nav-live-label">LIVE</span>
+      </a>
+      <a href="picks.html">노써치픽</a>
+      <a href="guides.html">구매가이드</a>
+      <a href="#categories">카테고리</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="container">
+    <h1 class="hero-title">
+      지금 추천하는 <em>제품</em>을 바로 확인하세요
+    </h1>
+    <p class="hero-sub">
+      순위는 방금도 움직였고, 노써치 CM은 지금도 다음 추천을 준비 중입니다.
+    </p>
+
+    <div class="search" role="search">
+      <div class="ai-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.5 L13.6 8.4 Q13.9 9.5 15 9.8 L20.5 12 L15 14.2 Q13.9 14.5 13.6 15.6 L12 21.5 L10.4 15.6 Q10.1 14.5 9 14.2 L3.5 12 L9 9.8 Q10.1 9.5 10.4 8.4 Z"
+                fill="currentColor"/>
+          <path d="M18.5 2 L19.1 4 Q19.2 4.4 19.6 4.5 L21.5 5 L19.6 5.5 Q19.2 5.6 19.1 6 L18.5 8 L17.9 6 Q17.8 5.6 17.4 5.5 L15.5 5 L17.4 4.5 Q17.8 4.4 17.9 4 Z"
+                fill="currentColor" opacity="0.9"/>
+        </svg>
+      </div>
+      <span class="ai-tag">AI</span>
+      <input type="text" placeholder="무엇을 추천해드릴까요? 예) 6평 방에서 쓸 조용한 공기청정기 · 영상편집용 맥북" aria-label="노써치 AI에게 추천을 요청하세요" />
+      <span class="search-kbd">⌘ K</span>
+    </div>
+
+    <div class="hero-split">
+      <!-- 🔥 지금 많이 보는 -->
+      <div class="hero-col">
+        <div class="hero-col-head">
+          <div class="hero-col-title"><span class="ico">🔥</span>지금 많이 보는 제품</div>
+          <div class="hero-col-tick"><span class="live-dot"></span>실시간</div>
+        </div>
+        <a class="hero-item" href="#">
+          <div class="hero-item-left">
+            <span class="hero-item-rank">1</span>
+            <span class="hero-item-name">삼성 비스포크 AI 로봇청소기 VR7MD96516G</span>
+          </div>
+          <span class="hero-item-signal"><span class="trend-up">지금 214명 비교 중</span></span>
+        </a>
+        <a class="hero-item" href="#">
+          <div class="hero-item-left">
+            <span class="hero-item-rank">2</span>
+            <span class="hero-item-name">LG 퓨리케어 오브제컬렉션 공기청정기</span>
+          </div>
+          <span class="hero-item-signal"><span class="trend-up">오늘 조회 ↑32%</span></span>
+        </a>
+        <a class="hero-item" href="#">
+          <div class="hero-item-left">
+            <span class="hero-item-rank">3</span>
+            <span class="hero-item-name">에어팟 프로 3</span>
+          </div>
+          <span class="hero-item-signal"><span class="trend-up">오늘 비교 ↑48%</span></span>
+        </a>
+        <a class="hero-item" href="#">
+          <div class="hero-item-left">
+            <span class="hero-item-rank">4</span>
+            <span class="hero-item-name">맥북 프로 M5 14"</span>
+          </div>
+          <span class="hero-item-signal"><span class="trend-neutral">어제 대비 유지</span></span>
+        </a>
+      </div>
+
+      <!-- ⚡ 방금 업데이트된 추천 -->
+      <div class="hero-col">
+        <div class="hero-col-head">
+          <div class="hero-col-title"><span class="ico">⚡</span>방금 업데이트된 추천</div>
+          <div class="hero-col-tick"><span class="live-dot"></span>갱신</div>
+        </div>
+        <a class="hero-item" href="#">
+          <div class="hero-item-left">
+            <span class="hero-item-rank">·</span>
+            <span class="hero-item-name">무선청소기 추천 가이드</span>
+          </div>
+          <span class="hero-item-signal"><span class="trend-down">2시간 전 업데이트</span></span>
+        </a>
+        <a class="hero-item" href="#">
+          <div class="hero-item-left">
+            <span class="hero-item-rank">·</span>
+            <span class="hero-item-name">노트북 추천 가이드</span>
+          </div>
+          <span class="hero-item-signal"><span class="trend-down">오늘 순위 변경</span></span>
+        </a>
+        <a class="hero-item" href="#">
+          <div class="hero-item-left">
+            <span class="hero-item-rank">·</span>
+            <span class="hero-item-name">공기청정기 추천 가이드</span>
+          </div>
+          <span class="hero-item-signal"><span class="trend-down">3시간 전 업데이트</span></span>
+        </a>
+        <a class="hero-item" href="#">
+          <div class="hero-item-left">
+            <span class="hero-item-rank">·</span>
+            <span class="hero-item-name">에어컨 (스탠드·LG) 추천</span>
+          </div>
+          <span class="hero-item-signal"><span class="trend-down">어제 가격 반영</span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== IN THE LAB (테스트 진행 중) ========== -->
+<section class="block" id="lab">
+  <div class="container">
+    <div class="lab">
+      <div class="lab-inner">
+        <div class="lab-head">
+          <div>
+            <div class="lab-eyebrow"><span class="live-dot"></span>IN THE LAB</div>
+            <div class="lab-title">🧪 지금 노써치 CM이 준비중인 콘텐츠</div>
+            <div class="lab-sub">다음 업데이트 예정 목록. 완료되면 가장 먼저 알려드려요.</div>
+          </div>
+          <a href="#" style="font-size:13px; color:#6FA8FF; white-space:nowrap;">다음 업데이트 일정 →</a>
+        </div>
+
+        <div class="lab-list">
+          <div class="lab-item">
+            <div class="lab-icon">🌬️</div>
+            <div class="lab-item-body">
+              <div class="lab-item-title">공기청정기 12개 모델 비교 진행 중</div>
+              <div class="lab-item-sub">30평 이상 거실용 · CADR·소음·필터 비용 비교</div>
+            </div>
+            <div class="lab-progress">
+              <div class="lab-progress-bar"><i style="width: 72%;"></i></div>
+              <span>72% · D-3</span>
+            </div>
+            <button class="lab-notify-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+              </svg>
+              업데이트되면 알림 받기
+            </button>
+          </div>
+
+          <div class="lab-item">
+            <div class="lab-icon">🍳</div>
+            <div class="lab-item-body">
+              <div class="lab-item-title">에어프라이어 리뷰 준비 중</div>
+              <div class="lab-item-sub">가정용 5L급 · 조리 품질·세척·전기료 측정</div>
+            </div>
+            <div class="lab-progress">
+              <div class="lab-progress-bar"><i style="width: 34%;"></i></div>
+              <span>34% · D-10</span>
+            </div>
+            <button class="lab-notify-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+              </svg>
+              업데이트되면 알림 받기
+            </button>
+          </div>
+
+          <div class="lab-item">
+            <div class="lab-icon">💻</div>
+            <div class="lab-item-body">
+              <div class="lab-item-title">노트북 게이밍 추가 테스트</div>
+              <div class="lab-item-sub">신제품 3종 · FPS·발열·배터리 재측정</div>
+            </div>
+            <div class="lab-progress">
+              <div class="lab-progress-bar"><i style="width: 58%;"></i></div>
+              <span>58% · D-5</span>
+            </div>
+            <button class="lab-notify-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+              </svg>
+              업데이트되면 알림 받기
+            </button>
+          </div>
+
+          <div class="lab-item">
+            <div class="lab-icon">💨</div>
+            <div class="lab-item-body">
+              <div class="lab-item-title">헤어드라이어 DB 수집 중</div>
+              <div class="lab-item-sub">국내 판매 30종 스펙 정규화 · 풍량·소음 벤치마크</div>
+            </div>
+            <div class="lab-progress">
+              <div class="lab-progress-bar"><i style="width: 18%;"></i></div>
+              <span>18% · D-14</span>
+            </div>
+            <button class="lab-notify-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+              </svg>
+              업데이트되면 알림 받기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 최근 업데이트된 추천 (캐러셀) ========== -->
+<section class="block" id="updates">
+  <div class="container">
+    <div class="block-head">
+      <div class="block-title-wrap">
+        <span class="block-eyebrow">RECENTLY UPDATED · 노써치 CM 수기 갱신</span>
+        <h2 class="block-title">⚡ 최근 업데이트된 추천</h2>
+        <span class="block-sub">"왜 바뀌었는지"까지 함께 기록합니다.</span>
+      </div>
+      <a href="#" class="block-more">업데이트 타임라인 →</a>
+    </div>
+
+    <div class="carousel-wrap">
+      <button class="carousel-btn prev" type="button" aria-label="이전" data-target="updates-scroll">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="carousel-btn next" type="button" aria-label="다음" data-target="updates-scroll">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="carousel-scroll" id="updates-scroll">
+        <a class="update-card" href="#">
+          <div class="update-img">
+            <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=380&fit=crop&q=80" alt="공기청정기" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="fallback-emoji" style="display:none;">🌬️</div>
+            <span class="update-badge fresh">⚡ 3시간 전</span>
+          </div>
+          <div class="update-body">
+            <div class="update-title">공기청정기 추천 가이드</div>
+            <div class="update-meta">
+              <span>📝 노써치 CM 김노써</span>
+              <span>🔄 3번째 개정</span>
+            </div>
+            <div class="update-reason"><strong>왜 바뀌었나:</strong> 신제품 2개 반영 · 30평 이상 기준 1위 교체</div>
+          </div>
+        </a>
+
+        <a class="update-card" href="#">
+          <div class="update-img">
+            <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?w=600&h=380&fit=crop&q=80" alt="TV" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="fallback-emoji" style="display:none;">📺</div>
+            <span class="update-badge">어제</span>
+          </div>
+          <div class="update-body">
+            <div class="update-title">TV 추천 가이드</div>
+            <div class="update-meta">
+              <span>📝 노써치 CM 박써치</span>
+              <span>🔄 12번째 개정</span>
+            </div>
+            <div class="update-reason"><strong>왜 바뀌었나:</strong> 가격 기준 순위 조정 · 삼성 Neo QLED 65" 할인 반영</div>
+          </div>
+        </a>
+
+        <a class="update-card" href="#">
+          <div class="update-img">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=380&fit=crop&q=80" alt="노트북" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="fallback-emoji" style="display:none;">💻</div>
+            <span class="update-badge fresh">⚡ 오늘</span>
+          </div>
+          <div class="update-body">
+            <div class="update-title">노트북 · 사무용 추천</div>
+            <div class="update-meta">
+              <span>📝 노써치 CM 이큐레</span>
+              <span>🔄 5번째 개정</span>
+            </div>
+            <div class="update-reason"><strong>왜 바뀌었나:</strong> 1주일 실사용 테스트 결과 반영 · 휴대성 1위 교체</div>
+          </div>
+        </a>
+
+        <a class="update-card" href="#">
+          <div class="update-img">
+            <img src="https://images.unsplash.com/photo-1614127450213-0a92f37cad82?w=600&h=380&fit=crop&q=80" alt="에어컨" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="fallback-emoji" style="display:none;">❄️</div>
+            <span class="update-badge">2일 전</span>
+          </div>
+          <div class="update-body">
+            <div class="update-title">에어컨 · 스탠드형 추천</div>
+            <div class="update-meta">
+              <span>📝 노써치 CM 최픽</span>
+              <span>🔄 8번째 개정</span>
+            </div>
+            <div class="update-reason"><strong>왜 바뀌었나:</strong> 2026년형 전수 조사 완료 · 삼성·LG 스탠드 라인업 재정렬</div>
+          </div>
+        </a>
+
+        <a class="update-card" href="#">
+          <div class="update-img">
+            <img src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&h=380&fit=crop&q=80" alt="이어폰" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="fallback-emoji" style="display:none;">🎧</div>
+            <span class="update-badge">3일 전</span>
+          </div>
+          <div class="update-body">
+            <div class="update-title">무선이어폰 · 오픈형 추천</div>
+            <div class="update-meta">
+              <span>📝 노써치 CM 김노써</span>
+              <span>🔄 6번째 개정</span>
+            </div>
+            <div class="update-reason"><strong>왜 바뀌었나:</strong> 신제품 3종 직접 청음 후 순위 재조정</div>
+          </div>
+        </a>
+
+        <a class="update-card" href="#">
+          <div class="update-img">
+            <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&h=380&fit=crop&q=80" alt="로봇청소기" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="fallback-emoji" style="display:none;">🧹</div>
+            <span class="update-badge">4일 전</span>
+          </div>
+          <div class="update-body">
+            <div class="update-title">로봇청소기 · 가성비 추천</div>
+            <div class="update-meta">
+              <span>📝 노써치 CM 박써치</span>
+              <span>🔄 4번째 개정</span>
+            </div>
+            <div class="update-reason"><strong>왜 바뀌었나:</strong> 리뷰 450건 재분석 · 물걸레 전용 모델 1위 교체</div>
+          </div>
+        </a>
+
+        <a class="update-card" href="#">
+          <div class="update-img">
+            <img src="https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=600&h=380&fit=crop&q=80" alt="모니터" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+            <div class="fallback-emoji" style="display:none;">🖥️</div>
+            <span class="update-badge">5일 전</span>
+          </div>
+          <div class="update-body">
+            <div class="update-title">모니터 · 사무용 추천</div>
+            <div class="update-meta">
+              <span>📝 노써치 CM 이큐레</span>
+              <span>🔄 7번째 개정</span>
+            </div>
+            <div class="update-reason"><strong>왜 바뀌었나:</strong> 27인치 4K 라인 가격 조정 · LG 27UP 시리즈 1위 교체</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 최저가 변동 (캐러셀) ========== -->
+<section class="block" id="rising">
+  <div class="container">
+    <div class="block-head">
+      <div class="block-title-wrap">
+        <span class="block-eyebrow">LOWEST-PRICE MOVES · 최저가 변동</span>
+        <h2 class="block-title">🚀 최저가가 빠르게 내려온 제품</h2>
+        <span class="block-sub">추천 랭킹에 있는 모델 중, 최근 최저가가 크게 움직인 제품만 모았습니다.</span>
+      </div>
+      <a href="#" class="block-more">최저가 변동 랭킹 전체 →</a>
+    </div>
+
+    <div class="carousel-wrap">
+      <button class="carousel-btn prev" type="button" aria-label="이전" data-target="rising-scroll">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="carousel-btn next" type="button" aria-label="다음" data-target="rising-scroll">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="carousel-scroll" id="rising-scroll">
+        <a class="rising-card" href="#">
+          <div class="rising-head">
+            <div class="rising-thumb">
+              <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=200&h=200&fit=crop&q=80" alt="" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+              <div class="fallback-emoji" style="display:none;">🧹</div>
+            </div>
+            <div class="rising-metric">
+              <strong>↓ -12%</strong>
+              <span>최저가</span>
+            </div>
+          </div>
+          <div class="rising-cat">로봇청소기 · 프리미엄</div>
+          <div class="rising-name">에코백스 Deebot T80 옴니</div>
+          <div class="rising-signal">🔥 30일 최저가 돌파</div>
+          <div class="rising-price">
+            <span class="now">₩949,000</span>
+            <span class="prev">₩1,079,000</span>
+            <span class="delta">↓ ₩130,000</span>
+          </div>
+          <div class="rising-reason">신규 판매처 3곳이 경쟁적으로 가격을 내리면서 30일 최저가를 돌파했습니다. 물걸레 동시 세척 모델 기준 노써치 CM 2위 후보.</div>
+        </a>
+
+        <a class="rising-card" href="#">
+          <div class="rising-head">
+            <div class="rising-thumb">
+              <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=200&h=200&fit=crop&q=80" alt="" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+              <div class="fallback-emoji" style="display:none;">💻</div>
+            </div>
+            <div class="rising-metric">
+              <strong>↓ -8%</strong>
+              <span>최저가</span>
+            </div>
+          </div>
+          <div class="rising-cat">노트북 · 맥북</div>
+          <div class="rising-name">맥북 에어 M4 13인치 · 16GB/512GB</div>
+          <div class="rising-signal">💳 카드사 중복 할인 적용 중</div>
+          <div class="rising-price">
+            <span class="now">₩1,749,000</span>
+            <span class="prev">₩1,899,000</span>
+            <span class="delta">↓ ₩150,000</span>
+          </div>
+          <div class="rising-reason">공식 교육 할인 + 카드사 청구할인 중복 적용으로 최저가가 하락했습니다. 기존 M3 상위 모델 대비 가격 역전 구간 진입.</div>
+        </a>
+
+        <a class="rising-card" href="#">
+          <div class="rising-head">
+            <div class="rising-thumb">
+              <img src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=200&h=200&fit=crop&q=80" alt="" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+              <div class="fallback-emoji" style="display:none;">🎧</div>
+            </div>
+            <div class="rising-metric">
+              <strong>↓ -18%</strong>
+              <span>최저가</span>
+            </div>
+          </div>
+          <div class="rising-cat">무선이어폰 · 커널형</div>
+          <div class="rising-name">갤럭시 버즈3 프로</div>
+          <div class="rising-signal">📉 판매처 최저가 격차 1만원 이내</div>
+          <div class="rising-price">
+            <span class="now">₩219,000</span>
+            <span class="prev">₩268,000</span>
+            <span class="delta">↓ ₩49,000</span>
+          </div>
+          <div class="rising-reason">후속 모델 출시 전 재고 정리 구간 진입. 판매처 간 최저가 격차가 1만원 이내로 좁아져 가격 메리트가 커졌습니다.</div>
+        </a>
+
+        <a class="rising-card" href="#">
+          <div class="rising-head">
+            <div class="rising-thumb">
+              <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=200&h=200&fit=crop&q=80" alt="" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+              <div class="fallback-emoji" style="display:none;">🌬️</div>
+            </div>
+            <div class="rising-metric">
+              <strong>↓ -9%</strong>
+              <span>최저가</span>
+            </div>
+          </div>
+          <div class="rising-cat">공기청정기 · 거실용</div>
+          <div class="rising-name">삼성 비스포크 큐브 Air 60평형</div>
+          <div class="rising-signal">📊 직전 3개월 중 최저가</div>
+          <div class="rising-price">
+            <span class="now">₩1,079,000</span>
+            <span class="prev">₩1,189,000</span>
+            <span class="delta">↓ ₩110,000</span>
+          </div>
+          <div class="rising-reason">설치비 포함 기준 판매처 가격이 재정렬되면서 직전 3개월 중 가장 낮은 최저가를 기록했습니다. 필터 교체비까지 포함해도 1순위.</div>
+        </a>
+
+        <a class="rising-card" href="#">
+          <div class="rising-head">
+            <div class="rising-thumb">
+              <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?w=200&h=200&fit=crop&q=80" alt="" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+              <div class="fallback-emoji" style="display:none;">📺</div>
+            </div>
+            <div class="rising-metric">
+              <strong>↓ -14%</strong>
+              <span>최저가</span>
+            </div>
+          </div>
+          <div class="rising-cat">TV · OLED</div>
+          <div class="rising-name">LG OLED evo C4 65인치</div>
+          <div class="rising-signal">🎯 시즌 최저가 갱신</div>
+          <div class="rising-price">
+            <span class="now">₩2,490,000</span>
+            <span class="prev">₩2,890,000</span>
+            <span class="delta">↓ ₩400,000</span>
+          </div>
+          <div class="rising-reason">신학기 프로모션 종료 후에도 가격이 유지되며 시즌 최저가를 갱신했습니다. 65인치 OLED 라인업 중 가성비 1순위.</div>
+        </a>
+
+        <a class="rising-card" href="#">
+          <div class="rising-head">
+            <div class="rising-thumb">
+              <img src="https://images.unsplash.com/photo-1614127450213-0a92f37cad82?w=200&h=200&fit=crop&q=80" alt="" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+              <div class="fallback-emoji" style="display:none;">❄️</div>
+            </div>
+            <div class="rising-metric">
+              <strong>↓ -7%</strong>
+              <span>최저가</span>
+            </div>
+          </div>
+          <div class="rising-cat">에어컨 · 스탠드형</div>
+          <div class="rising-name">LG 휘센 뷰 18평형 2026</div>
+          <div class="rising-signal">📅 시즌 진입 전 사전 예약가</div>
+          <div class="rising-price">
+            <span class="now">₩1,690,000</span>
+            <span class="prev">₩1,820,000</span>
+            <span class="delta">↓ ₩130,000</span>
+          </div>
+          <div class="rising-reason">에어컨 시즌 본격 진입 전 사전 예약 가격이 적용 중입니다. 설치비·기본 배관 포함 기준 최저가.</div>
+        </a>
+      </div>
+    </div>
+
+    <p style="font-size:11.5px; color: var(--gray-7); margin-top: 16px; line-height: 1.6;">
+      * 최저가는 2026-04-22 오전 기준, 판매처 간 비교로 수집된 금액입니다. 카드사 할인·쿠폰 등 결제 조건에 따라 실제 결제가가 달라질 수 있습니다.
+    </p>
+  </div>
+</section>
+
+<!-- ========== 카테고리 탐색 (사이트맵) ========== -->
+<section class="block" id="categories">
+  <div class="container">
+    <div class="block-head">
+      <div class="block-title-wrap">
+        <span class="block-eyebrow">EXPLORE BY CATEGORY</span>
+        <h2 class="block-title">카테고리 탐색</h2>
+        <span class="block-sub">노써치가 다루는 모든 카테고리를 한눈에.</span>
+      </div>
+      <a href="#" class="block-more">전체 카테고리 →</a>
+    </div>
+
+    <div class="cat-tab-box">
+      <div class="cat-tabs" role="tablist">
+        <button class="cat-tab active" type="button" role="tab" data-panel="cat-home">
+          <span class="ico">🏠</span>생활가전<span class="count">8</span>
+        </button>
+        <button class="cat-tab" type="button" role="tab" data-panel="cat-kitchen">
+          <span class="ico">🍽️</span>주방가전<span class="count">8</span>
+        </button>
+        <button class="cat-tab" type="button" role="tab" data-panel="cat-it">
+          <span class="ico">💻</span>IT · 디지털<span class="count">8</span>
+        </button>
+        <button class="cat-tab" type="button" role="tab" data-panel="cat-season">
+          <span class="ico">🌤️</span>계절가전<span class="count">8</span>
+        </button>
+        <button class="cat-tab" type="button" role="tab" data-panel="cat-av">
+          <span class="ico">📺</span>영상·음향<span class="count">5</span>
+        </button>
+        <button class="cat-tab" type="button" role="tab" data-panel="cat-beauty">
+          <span class="ico">💄</span>뷰티·헬스<span class="count">5</span>
+        </button>
+        <button class="cat-tab" type="button" role="tab" data-panel="cat-mobility">
+          <span class="ico">🚗</span>모빌리티·카<span class="count">4</span>
+        </button>
+        <button class="cat-tab" type="button" role="tab" data-panel="cat-baby">
+          <span class="ico">👶</span>유아·반려<span class="count">5</span>
+        </button>
+      </div>
+
+      <div class="cat-panel active" id="cat-home" role="tabpanel">
+        <div class="cat-panel-head">
+          <div class="cat-panel-title"><span>🏠</span>생활가전</div>
+          <div class="cat-panel-desc">집안일을 줄여주는 필수 가전</div>
+        </div>
+        <div class="cat-chips">
+          <a class="cat-chip" href="#">로봇청소기<span class="dot" title="최근 업데이트"></span></a>
+          <a class="cat-chip" href="#">무선청소기<span class="dot" title="최근 업데이트"></span></a>
+          <a class="cat-chip" href="#">공기청정기<span class="dot" title="최근 업데이트"></span></a>
+          <a class="cat-chip" href="#">의류건조기</a>
+          <a class="cat-chip" href="#">의류관리기</a>
+          <a class="cat-chip" href="#">세탁기</a>
+          <a class="cat-chip" href="#">건조기</a>
+          <a class="cat-chip" href="#">전기레인지</a>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="cat-kitchen" role="tabpanel">
+        <div class="cat-panel-head">
+          <div class="cat-panel-title"><span>🍽️</span>주방가전</div>
+          <div class="cat-panel-desc">요리와 식생활을 바꿔주는 제품</div>
+        </div>
+        <div class="cat-chips">
+          <a class="cat-chip" href="#">에어프라이어<span class="dot" title="테스트 중"></span></a>
+          <a class="cat-chip" href="#">전기밥솥</a>
+          <a class="cat-chip" href="#">커피머신</a>
+          <a class="cat-chip" href="#">전자레인지</a>
+          <a class="cat-chip" href="#">정수기</a>
+          <a class="cat-chip" href="#">식기세척기</a>
+          <a class="cat-chip" href="#">인덕션</a>
+          <a class="cat-chip" href="#">블렌더</a>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="cat-it" role="tabpanel">
+        <div class="cat-panel-head">
+          <div class="cat-panel-title"><span>💻</span>IT · 디지털</div>
+          <div class="cat-panel-desc">노트북·모바일·주변기기까지</div>
+        </div>
+        <div class="cat-chips">
+          <a class="cat-chip" href="#">노트북<span class="dot" title="오늘 업데이트"></span></a>
+          <a class="cat-chip" href="#">스마트폰</a>
+          <a class="cat-chip" href="#">태블릿</a>
+          <a class="cat-chip" href="#">무선이어폰</a>
+          <a class="cat-chip" href="#">헤드폰</a>
+          <a class="cat-chip" href="#">모니터</a>
+          <a class="cat-chip" href="#">키보드</a>
+          <a class="cat-chip" href="#">마우스</a>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="cat-season" role="tabpanel">
+        <div class="cat-panel-head">
+          <div class="cat-panel-title"><span>🌤️</span>계절가전</div>
+          <div class="cat-panel-desc">시즌 전에 미리 확인하는 추천 리스트</div>
+        </div>
+        <div class="cat-chips">
+          <a class="cat-chip" href="#">에어컨<span class="dot" title="시즌 진입"></span></a>
+          <a class="cat-chip" href="#">제습기</a>
+          <a class="cat-chip" href="#">선풍기</a>
+          <a class="cat-chip" href="#">서큘레이터</a>
+          <a class="cat-chip" href="#">가습기</a>
+          <a class="cat-chip" href="#">난방기</a>
+          <a class="cat-chip" href="#">전기매트</a>
+          <a class="cat-chip" href="#">온풍기</a>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="cat-av" role="tabpanel">
+        <div class="cat-panel-head">
+          <div class="cat-panel-title"><span>📺</span>영상 · 음향</div>
+          <div class="cat-panel-desc">거실과 서재를 채우는 프리미엄 AV</div>
+        </div>
+        <div class="cat-chips">
+          <a class="cat-chip" href="#">TV</a>
+          <a class="cat-chip" href="#">사운드바</a>
+          <a class="cat-chip" href="#">홈시어터</a>
+          <a class="cat-chip" href="#">프로젝터</a>
+          <a class="cat-chip" href="#">블루투스 스피커</a>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="cat-beauty" role="tabpanel">
+        <div class="cat-panel-head">
+          <div class="cat-panel-title"><span>💄</span>뷰티 · 헬스</div>
+          <div class="cat-panel-desc">매일 쓰는 개인용 기기</div>
+        </div>
+        <div class="cat-chips">
+          <a class="cat-chip" href="#">헤어드라이어<span class="dot" title="DB 수집 중"></span></a>
+          <a class="cat-chip" href="#">전기면도기</a>
+          <a class="cat-chip" href="#">고데기</a>
+          <a class="cat-chip" href="#">전동칫솔</a>
+          <a class="cat-chip" href="#">마사지건</a>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="cat-mobility" role="tabpanel">
+        <div class="cat-panel-head">
+          <div class="cat-panel-title"><span>🚗</span>모빌리티 · 카</div>
+          <div class="cat-panel-desc">차와 이동을 위한 제품</div>
+        </div>
+        <div class="cat-chips">
+          <a class="cat-chip" href="#">블랙박스</a>
+          <a class="cat-chip" href="#">차량용 청소기</a>
+          <a class="cat-chip" href="#">전기자전거</a>
+          <a class="cat-chip" href="#">전동킥보드</a>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="cat-baby" role="tabpanel">
+        <div class="cat-panel-head">
+          <div class="cat-panel-title"><span>👶</span>유아 · 반려</div>
+          <div class="cat-panel-desc">가족 구성원을 위한 전용 제품</div>
+        </div>
+        <div class="cat-chips">
+          <a class="cat-chip" href="#">유아용 공기청정기</a>
+          <a class="cat-chip" href="#">젖병소독기</a>
+          <a class="cat-chip" href="#">분유포트</a>
+          <a class="cat-chip" href="#">반려동물 자동급식기</a>
+          <a class="cat-chip" href="#">반려동물 헤어드라이어</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="container">
+    <div class="foot-main">
+      <div class="foot-brand">
+        <div class="logo">노써치<span class="logo-sub">nosearch</span></div>
+        <p>
+          지금 이 순간에도 노써치 CM이 다음 추천을 준비하고 있습니다.
+          사람이 직접 쓰는 추천 노써치.
+        </p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>서비스</h4>
+          <a href="guides.html">구매가이드</a>
+          <a href="#categories">카테고리</a>
+          <a href="https://nosearch.com">가격 알림</a>
+          <a href="https://nosearch.com">앱 다운로드</a>
+        </div>
+        <div class="foot-col">
+          <h4>회사</h4>
+          <a href="#">소개</a>
+          <a href="#">채용</a>
+          <a href="#">블로그</a>
+          <a href="#">제휴문의</a>
+        </div>
+        <div class="foot-col">
+          <h4>고객지원</h4>
+          <a href="#">문의하기</a>
+          <a href="#">자주 묻는 질문</a>
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div class="foot-legal">
+        © 2026 Nosearch. All rights reserved. · 모든 구매가이드는 사람 노써치 CM이 작성합니다. AI 생성 콘텐츠는 사용하지 않습니다.
+      </div>
+      <div>
+        <a href="#">이용약관</a> · <a href="#">개인정보처리방침</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ========= Carousel 좌우 버튼 =========
+  (function () {
+    var btns = document.querySelectorAll('.carousel-btn');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var targetId = btn.getAttribute('data-target');
+        var scroller = document.getElementById(targetId);
+        if (!scroller) return;
+        var firstChild = scroller.querySelector('.update-card, .rising-card');
+        if (!firstChild) return;
+        var step = firstChild.getBoundingClientRect().width + 16; // gap
+        var dir = btn.classList.contains('prev') ? -1 : 1;
+        scroller.scrollBy({ left: dir * step, behavior: 'smooth' });
+      });
+    });
+  })();
+
+  // ========= 카테고리 탭 전환 =========
+  (function () {
+    var tabs = document.querySelectorAll('.cat-tab');
+    var panels = document.querySelectorAll('.cat-panel');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = tab.getAttribute('data-panel');
+        tabs.forEach(function (t) { t.classList.remove('active'); });
+        panels.forEach(function (p) { p.classList.remove('active'); });
+        tab.classList.add('active');
+        var panel = document.getElementById(target);
+        if (panel) panel.classList.add('active');
+      });
+    });
+  })();
+</script>
+</body>
+</html>

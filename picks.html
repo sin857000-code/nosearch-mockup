@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노써치 - 노써치픽 · 최고의 선택</title>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #256FFF;
+      --blue-light: #E8F2FF;
+      --blue-pale: #F5F9FF;
+      --accent-red: #FF455B;
+      --gray-10: #1A1A1A;
+      --gray-dark: #545454;
+      --gray-7: #787878;
+      --gray-5: #B3B3B3;
+      --gray-4: #C8C8C8;
+      --gray-3: #DFDFDF;
+      --border: #E5E7EB;
+      --gray-subtle: #EFEFEF;
+      --white: #FFFFFF;
+      --gray-1: #F9F9F9;
+      --ivory: #FAF9F5;
+      --green-600: #16A34A;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', Roboto, Arial, sans-serif;
+      color: var(--gray-10);
+      background: var(--gray-1);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==================== TOPBAR ==================== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      padding: 16px 0;
+    }
+
+    .topbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar-logo {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--gray-10);
+      font-weight: 800;
+    }
+
+    .topbar-logo-text {
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .topbar-logo-sub {
+      color: var(--gray-5);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .topbar-nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .topbar-nav a {
+      text-decoration: none;
+      color: var(--gray-7);
+      font-size: 14px;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .topbar-nav a:hover {
+      color: var(--gray-dark);
+    }
+
+    .topbar-nav a.active {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .topbar-nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-red);
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: livePulse 2s infinite;
+    }
+
+    @keyframes livePulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 69, 91, 0.6);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.15);
+        box-shadow: 0 0 0 6px rgba(255, 69, 91, 0);
+      }
+    }
+
+    /* ==================== HERO ==================== */
+    .hero {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0 56px;
+    }
+
+    .hero .container {
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--gray-10);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--gray-dark);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .hero-tiers {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-tier-card {
+      padding: 18px 22px;
+      border-radius: 12px;
+      color: var(--white);
+      text-align: left;
+      flex: 1;
+      min-width: 200px;
+      max-width: 280px;
+    }
+
+    .hero-tier-card.best {
+      background: var(--primary);
+    }
+
+    .hero-tier-card.value {
+      background: var(--green-600);
+    }
+
+    .hero-tier-card.plus {
+      background: var(--gray-10);
+    }
+
+    .hero-tier-badge {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .hero-tier-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .hero-tier-desc {
+      font-size: 12.5px;
+      line-height: 1.5;
+      opacity: 0.95;
+    }
+
+    /* ==================== FILTER BAR ==================== */
+    .filter-bar {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px 12px;
+      margin: 48px 0;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .filter-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-tab {
+      white-space: nowrap;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: var(--gray-1);
+      border: 1px solid var(--border);
+      color: var(--gray-7);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-tab:hover {
+      background: var(--gray-subtle);
+    }
+
+    .cat-tab.active {
+      background: var(--gray-10);
+      color: var(--white);
+      border-color: var(--gray-10);
+    }
+
+    /* ==================== PICKS GRID ==================== */
+    .picks-section {
+      padding: 48px 0;
+    }
+
+    .picks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .pick-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .pick-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: 0 4px 16px rgba(37, 111, 255, 0.12);
+    }
+
+    .pick-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pick-category {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .pick-badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .pick-badge.best {
+      background: var(--primary);
+    }
+
+    .pick-badge.value {
+      background: var(--green-600);
+    }
+
+    .pick-badge.plus {
+      background: var(--gray-10);
+    }
+
+    .pick-image {
+      aspect-ratio: 4 / 3;
+      background: var(--gray-1);
+      display: grid;
+      place-items: center;
+      font-size: 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pick-body {
+      padding: 18px 20px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pick-product-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-10);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .pick-specs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .pick-spec-chip {
+      background: var(--gray-1);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 9px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--gray-dark);
+      white-space: nowrap;
+    }
+
+    .pick-cm-box {
+      background: var(--blue-pale);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      flex-grow: 1;
+    }
+
+    .pick-cm-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .pick-cm-text {
+      font-size: 12.5px;
+      color: var(--gray-dark);
+      line-height: 1.5;
+    }
+
+    .pick-price-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .pick-price {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--accent-red);
+    }
+
+    .pick-discount {
+      background: #FFF4F6;
+      border: 1px solid #FFDCDF;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-red);
+    }
+
+    .pick-cta {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      background: var(--blue-pale);
+      border: 1px solid rgba(37, 111, 255, 0.2);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .pick-cta:hover {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    /* ==================== FOOTER ==================== */
+    .footer {
+      background: var(--gray-10);
+      color: var(--white);
+      padding: 56px 0 24px;
+      margin-top: 80px;
+    }
+
+    .footer .container {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--gray-5);
+      line-height: 1.6;
+    }
+
+    .footer-column h4 {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+
+    .footer-column a {
+      display: block;
+      font-size: 13px;
+      color: var(--gray-5);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--gray-5);
+    }
+
+    .footer-bottom a {
+      color: var(--gray-5);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--white);
+    }
+
+    .footer-legal {
+      margin-bottom: 8px;
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 26px;
+      }
+
+      .hero-tiers {
+        flex-direction: column;
+      }
+
+      .hero-tier-card {
+        max-width: none;
+      }
+
+      .picks-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .topbar-nav {
+        gap: 20px;
+      }
+
+      .topbar-nav a {
+        font-size: 12px;
+      }
+
+      .footer .container {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero {
+        padding: 32px 0 40px;
+      }
+
+      .hero h1 {
+        font-size: 22px;
+      }
+
+      .hero-sub {
+        font-size: 13px;
+      }
+
+      .picks-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-nav {
+        gap: 16px;
+      }
+
+      .topbar-nav a {
+        font-size: 11px;
+      }
+
+      .topbar-logo-text {
+        font-size: 18px;
+      }
+
+      .footer .container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .filter-bar {
+        margin: 32px 0;
+      }
+
+      .picks-section {
+        padding: 32px 0;
+      }
+    }
+
+    /* Hide cards by category */
+    .pick-card {
+      display: flex;
+    }
+
+    .pick-card.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="container">
+      <a href="index.html" class="topbar-logo">
+        <span class="topbar-logo-text">노써치</span>
+        <span class="topbar-logo-sub">nosearch</span>
+      </a>
+      <nav class="topbar-nav">
+        <a href="index.html#updates">
+          <span class="live-dot"></span>최근 업데이트
+        </a>
+        <a href="picks.html" class="active">노써치픽</a>
+        <a href="guides.html">구매가이드</a>
+        <a href="index.html#categories">카테고리</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">NOSEARCH PICK · 노써치 CM 직접 선정</div>
+      <h1>검색 없이 바로 알 수 있는, 지금 최고의 선택</h1>
+      <p class="hero-sub">베스트픽 · 가성비픽 · 플러스픽 — 상황에 맞는 층위로 추천합니다</p>
+
+      <div class="hero-tiers">
+        <div class="hero-tier-card best">
+          <div class="hero-tier-badge">🥇</div>
+          <div class="hero-tier-title">베스트픽</div>
+          <div class="hero-tier-desc">전체 균형이 가장 좋은 선택. 지금 이 카테고리에서 사도 후회 없는 1순위</div>
+        </div>
+        <div class="hero-tier-card value">
+          <div class="hero-tier-badge">💰</div>
+          <div class="hero-tier-title">가성비픽</div>
+          <div class="hero-tier-desc">예산 대비 만족도가 가장 높은 선택. 핵심 기능만 보면 상위 모델과 차이가 없음</div>
+        </div>
+        <div class="hero-tier-card plus">
+          <div class="hero-tier-badge">⭐</div>
+          <div class="hero-tier-title">플러스픽</div>
+          <div class="hero-tier-desc">특정 강점(소음·디자인·휴대성)이 분명한 선택. 해당 조건이 중요한 분께만 추천</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="container">
+    <div class="filter-bar">
+      <button class="cat-tab active" data-category="all">전체</button>
+      <button class="cat-tab" data-category="living">🏠 생활가전</button>
+      <button class="cat-tab" data-category="it">💻 IT·디지털</button>
+      <button class="cat-tab" data-category="season">🌤️ 계절가전</button>
+      <button class="cat-tab" data-category="kitchen">🍽️ 주방가전</button>
+      <button class="cat-tab" data-category="av">📺 영상·음향</button>
+    </div>
+  </div>
+
+  <!-- PICKS GRID -->
+  <section class="picks-section">
+    <div class="container">
+      <div class="picks-grid">
+        <!-- 1. 로봇청소기 · 베스트픽 -->
+        <a href="guides.html" class="pick-card" data-category="living">
+          <div class="pick-header">
+            <span class="pick-category">생활가전 · 로봇청소기</span>
+            <span class="pick-badge best">베스트픽</span>
+          </div>
+          <div class="pick-image">🧹</div>
+          <div class="pick-body">
+            <div class="pick-product-name">에코백스 Deebot T80 옴니</div>
+            <div class="pick-specs">
+              <span class="pick-spec-chip">물걸레자동세척</span>
+              <span class="pick-spec-chip">스테이션 복귀</span>
+              <span class="pick-spec-chip">레이저 매핑</span>
+            </div>
+            <div class="pick-cm-box">
+              <span class="pick-cm-label">노써치 CM 한마디:</span>
+              <div class="pick-cm-text">물걸레 동시 세척 + 스테이션 자동 비움 기준 현재 1순위. 소음이 있어 야간 스케줄 설정 필수.</div>
+            </div>
+            <div class="pick-price-section">
+              <span class="pick-price">₩949,000</span>
+              <span class="pick-discount">↓12%</span>
+            </div>
+            <button class="pick-cta">구매가이드 전체 보기 →</button>
+          </div>
+        </a>
+
+        <!-- 2. 공기청정기 · 베스트픽 -->
+        <a href="guides.html" class="pick-card" data-category="living">
+          <div class="pick-header">
+            <span class="pick-category">생활가전 · 공기청정기</span>
+            <span class="pick-badge best">베스트픽</span>
+          </div>
+          <div class="pick-image">🌬️</div>
+          <div class="pick-body">
+            <div class="pick-product-name">LG 퓨리케어 오브제컬렉션 360°</div>
+            <div class="pick-specs">
+              <span class="pick-spec-chip">CADR 400</span>
+              <span class="pick-spec-chip">PM1.0 센서</span>
+              <span class="pick-spec-chip">18평 대응</span>
+            </div>
+            <div class="pick-cm-box">
+              <span class="pick-cm-label">노써치 CM 한마디:</span>
+              <div class="pick-cm-text">PM1.0 초미세먼지 실시간 감지 + 청정 면적 대비 소음 최저 모델. 거실 18~23평 기준 1순위.</div>
+            </div>
+            <div class="pick-price-section">
+              <span class="pick-price">₩689,000</span>
+              <span class="pick-discount">↓5%</span>
+            </div>
+            <button class="pick-cta">구매가이드 전체 보기 →</button>
+          </div>
+        </a>
+
+        <!-- 3. 노트북 · 가성비픽 -->
+        <a href="guides.html" class="pick-card" data-category="it">
+          <div class="pick-header">
+            <span class="pick-category">IT·디지털 · 노트북</span>
+            <span class="pick-badge value">가성비픽</span>
+          </div>
+          <div class="pick-image">💻</div>
+          <div class="pick-body">
+            <div class="pick-product-name">맥북 에어 M4 13인치 16GB/512GB</div>
+            <div class="pick-specs">
+              <span class="pick-spec-chip">M4 칩</span>
+              <span class="pick-spec-chip">배터리 18h</span>
+              <span class="pick-spec-chip">1.24kg</span>
+            </div>
+            <div class="pick-cm-box">
+              <span class="pick-cm-label">노써치 CM 한마디:</span>
+              <div class="pick-cm-text">배터리·성능·휴대성 모두 기준 이상. 영상 편집 제외 대부분 작업 기준 가성비 1순위.</div>
+            </div>
+            <div class="pick-price-section">
+              <span class="pick-price">₩1,749,000</span>
+              <span class="pick-discount">↓8%</span>
+            </div>
+            <button class="pick-cta">구매가이드 전체 보기 →</button>
+          </div>
+        </a>
+
+        <!-- 4. TV · 베스트픽 -->
+        <a href="guides.html" class="pick-card" data-category="av">
+          <div class="pick-header">
+            <span class="pick-category">영상·음향 · TV</span>
+            <span class="pick-badge best">베스트픽</span>
+          </div>
+          <div class="pick-image">📺</div>
+          <div class="pick-body">
+            <div class="pick-product-name">LG OLED evo C4 65인치</div>
+            <div class="pick-specs">
+              <span class="pick-spec-chip">OLED evo</span>
+              <span class="pick-spec-chip">4K 120Hz</span>
+              <span class="pick-spec-chip">G-Sync 지원</span>
+            </div>
+            <div class="pick-cm-box">
+              <span class="pick-cm-label">노써치 CM 한마디:</span>
+              <div class="pick-cm-text">거실 메인 TV 기준 화질 최고. QLED 대비 가격 메리트가 크게 높아진 구간.</div>
+            </div>
+            <div class="pick-price-section">
+              <span class="pick-price">₩2,490,000</span>
+              <span class="pick-discount">↓14%</span>
+            </div>
+            <button class="pick-cta">구매가이드 전체 보기 →</button>
+          </div>
+        </a>
+
+        <!-- 5. 무선이어폰 · 가성비픽 -->
+        <a href="guides.html" class="pick-card" data-category="it">
+          <div class="pick-header">
+            <span class="pick-category">IT·디지털 · 무선이어폰</span>
+            <span class="pick-badge value">가성비픽</span>
+          </div>
+          <div class="pick-image">🎧</div>
+          <div class="pick-body">
+            <div class="pick-product-name">갤럭시 버즈3 프로</div>
+            <div class="pick-specs">
+              <span class="pick-spec-chip">ANC 상위권</span>
+              <span class="pick-spec-chip">IPX7</span>
+              <span class="pick-spec-chip">HD 오디오</span>
+            </div>
+            <div class="pick-cm-box">
+              <span class="pick-cm-label">노써치 CM 한마디:</span>
+              <div class="pick-cm-text">안드로이드 생태계 기준 ANC 성능 대비 가격이 가장 내려온 타이밍. 후속 모델 출시 전 재고 소진 구간.</div>
+            </div>
+            <div class="pick-price-section">
+              <span class="pick-price">₩219,000</span>
+              <span class="pick-discount">↓18%</span>
+            </div>
+            <button class="pick-cta">구매가이드 전체 보기 →</button>
+          </div>
+        </a>
+
+        <!-- 6. 에어컨 · 플러스픽 -->
+        <a href="guides.html" class="pick-card" data-category="season">
+          <div class="pick-header">
+            <span class="pick-category">계절가전 · 에어컨</span>
+            <span class="pick-badge plus">플러스픽</span>
+          </div>
+          <div class="pick-image">❄️</div>
+          <div class="pick-body">
+            <div class="pick-product-name">LG 휘센 뷰 18평형 2026년형</div>
+            <div class="pick-specs">
+              <span class="pick-spec-chip">18평</span>
+              <span class="pick-spec-chip">인버터 1등급</span>
+              <span class="pick-spec-chip">AI 절전</span>
+            </div>
+            <div class="pick-cm-box">
+              <span class="pick-cm-label">노써치 CM 한마디:</span>
+              <div class="pick-cm-text">소음 최소화 설계로 침실 전용 에어컨이 필요한 경우에만 우선 추천. 거실용은 동급 삼성 모델이 유리.</div>
+            </div>
+            <div class="pick-price-section">
+              <span class="pick-price">₩1,690,000</span>
+              <span class="pick-discount">↓7%</span>
+            </div>
+            <button class="pick-cta">구매가이드 전체 보기 →</button>
+          </div>
+        </a>
+
+        <!-- 7. 에어프라이어 · 가성비픽 -->
+        <a href="guides.html" class="pick-card" data-category="kitchen">
+          <div class="pick-header">
+            <span class="pick-category">주방가전 · 에어프라이어</span>
+            <span class="pick-badge value">가성비픽</span>
+          </div>
+          <div class="pick-image">🍳</div>
+          <div class="pick-body">
+            <div class="pick-product-name">필립스 에센셜 에어프라이어 5L HD9252</div>
+            <div class="pick-specs">
+              <span class="pick-spec-chip">5L 대용량</span>
+              <span class="pick-spec-chip">급속 예열</span>
+              <span class="pick-spec-chip">세척 간편</span>
+            </div>
+            <div class="pick-cm-box">
+              <span class="pick-cm-label">노써치 CM 한마디:</span>
+              <div class="pick-cm-text">4인 가족 기준 용량·조리 품질·세척 편의성 균형 최고. 200도 도달 시간 기준 동급 모델 중 최단.</div>
+            </div>
+            <div class="pick-price-section">
+              <span class="pick-price">₩129,000</span>
+              <span class="pick-discount">↓15%</span>
+            </div>
+            <button class="pick-cta">구매가이드 전체 보기 →</button>
+          </div>
+        </a>
+
+        <!-- 8. 모니터 · 베스트픽 -->
+        <a href="guides.html" class="pick-card" data-category="it">
+          <div class="pick-header">
+            <span class="pick-category">IT·디지털 · 모니터</span>
+            <span class="pick-badge best">베스트픽</span>
+          </div>
+          <div class="pick-image">🖥️</div>
+          <div class="pick-body">
+            <div class="pick-product-name">LG 27UP850N-W 27인치 4K</div>
+            <div class="pick-specs">
+              <span class="pick-spec-chip">4K IPS</span>
+              <span class="pick-spec-chip">USB-C 96W</span>
+              <span class="pick-spec-chip">DCI-P3 95%</span>
+            </div>
+            <div class="pick-cm-box">
+              <span class="pick-cm-label">노써치 CM 한마디:</span>
+              <div class="pick-cm-text">맥 연결 USB-C 단자 + 정확한 색재현 기준 사무·크리에이터 겸용 1순위. 다른 모니터 살 이유가 없는 구간.</div>
+            </div>
+            <div class="pick-price-section">
+              <span class="pick-price">₩489,000</span>
+              <span class="pick-discount">↓9%</span>
+            </div>
+            <button class="pick-cta">구매가이드 전체 보기 →</button>
+          </div>
+        </a>
+
+        <!-- 9. 무선청소기 · 플러스픽 -->
+        <a href="guides.html" class="pick-card" data-category="living">
+          <div class="pick-header">
+            <span class="pick-category">생활가전 · 무선청소기</span>
+            <span class="pick-badge plus">플러스픽</span>
+          </div>
+          <div class="pick-image">💨</div>
+          <div class="pick-body">
+            <div class="pick-product-name">다이슨 V15 디텍트 컴플리트</div>
+            <div class="pick-specs">
+              <span class="pick-spec-chip">흡입력 240AW</span>
+              <span class="pick-spec-chip">레이저 먼지 감지</span>
+              <span class="pick-spec-chip">LCD 디스플레이</span>
+            </div>
+            <div class="pick-cm-box">
+              <span class="pick-cm-label">노써치 CM 한마디:</span>
+              <div class="pick-cm-text">흡입력 절대치 기준 최강. 집먼지 알레르기 보유자 또는 반려동물 털 청소가 주 목적인 경우에만 가격 정당화 가능.</div>
+            </div>
+            <div class="pick-price-section">
+              <span class="pick-price">₩879,000</span>
+              <span class="pick-discount">↓6%</span>
+            </div>
+            <button class="pick-cta">구매가이드 전체 보기 →</button>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <h3>노써치</h3>
+        <p>검색 없이 최고의 제품을 만나는 가장 빠른 방법. 노써치는 다나와 데이터와 전문 큐레이션으로 당신의 선택을 돕습니다.</p>
+      </div>
+      <div class="footer-column">
+        <h4>서비스</h4>
+        <a href="guides.html">구매가이드</a>
+        <a href="index.html#categories">카테고리</a>
+        <a href="#">가격 알림</a>
+        <a href="#">앱 다운로드</a>
+      </div>
+      <div class="footer-column">
+        <h4>회사</h4>
+        <a href="#">소개</a>
+        <a href="#">채용</a>
+        <a href="#">블로그</a>
+        <a href="#">제휴문의</a>
+      </div>
+      <div class="footer-column">
+        <h4>고객지원</h4>
+        <a href="#">문의하기</a>
+        <a href="#">자주 묻는 질문</a>
+        <a href="#">이용약관</a>
+        <a href="#">개인정보처리방침</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">© 2026 Nosearch. All rights reserved.</div>
+      <div>
+        <a href="#">이용약관</a> · <a href="#">개인정보처리방침</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FILTER SCRIPT -->
+  <script>
+    document.querySelectorAll('.cat-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Update active tab
+        document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Filter cards
+        const category = tab.getAttribute('data-category');
+        document.querySelectorAll('.pick-card').forEach(card => {
+          if (category === 'all') {
+            card.classList.remove('hidden');
+          } else {
+            if (card.getAttribute('data-category') === category) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+            <span class="chip">베스트픽</span>
+            <h3>공기청정기 30평형</h3>
+            <p>센서 신뢰도, 필터 관리비, 자동 모드 안정성, 소음 균형이 좋은 모델 중심으로 설명합니다.</p>
+            <a class="section-link" href="guides.html#air-purifier">가이드 기준 보기</a>
+          </article>
+          <article class="guide-card">
+            <span class="chip">가성비픽</span>
+            <h3>노트북 사무용 100만원대</h3>
+            <p>문서 작업과 화상회의 위주 사용자에게 필요한 기준만 남기고 추천합니다.</p>
+            <a class="section-link" href="guides.html#laptop">가이드 기준 보기</a>
+          </article>
+          <article class="guide-card">
+            <span class="chip">플러스픽</span>
+            <h3>로봇청소기 반려가구용</h3>
+            <p>머리카락 엉킴 방지, 장애물 회피, 도킹 유지관리 같은 체감 포인트가 강한 모델입니다.</p>
+            <a class="section-link" href="verification.html">검증 포인트 보기</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>추천 페이지에 꼭 같이 있어야 하는 것</h2>
+            <p>브랜드 문서가 강조한 것처럼 추천은 고정된 결과가 아니라 업데이트되는 판단입니다.</p>
+          </div>
+        </div>
+        <div class="detail-grid three">
+          <div class="detail-card">
+            <h3>추천 이유</h3>
+            <p>무엇이 장점인지보다 어떤 상황에서 특히 좋은지 명확하게 씁니다.</p>
+          </div>
+          <div class="detail-card">
+            <h3>가격 히스토리</h3>
+            <p>지금 사도 되는지 판단할 수 있게 최근 변동 흐름을 붙입니다.</p>
+          </div>
+          <div class="detail-card">
+            <h3>개정 이력</h3>
+            <p>추천이 언제, 왜 바뀌었는지 남겨야 다시 찾게 됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>대표 카테고리별 픽 구성 예시</h2>
+            <p>실제 서비스로 확장할 때는 예산대, 공간, 사용 목적 태그를 함께 붙이는 편이 좋습니다.</p>
+          </div>
+        </div>
+        <div class="card-grid four">
+          <a class="category-card" href="price-watch.html">
+            <span class="chip gray">에어컨</span>
+            <h3>시즌가전</h3>
+            <p>설치비와 행사 시점이 중요해 가격 페이지와 연결성이 높습니다.</p>
+          </a>
+          <a class="category-card" href="guides.html#dishwasher">
+            <span class="chip gray">식기세척기</span>
+            <h3>주방가전</h3>
+            <p>용량과 설치 구조에 따라 가성비픽 설계가 달라집니다.</p>
+          </a>
+          <a class="category-card" href="guides.html#tv">
+            <span class="chip gray">TV</span>
+            <h3>디지털 가전</h3>
+            <p>크기와 용도별 추천 흐름이 직관적으로 먹히는 카테고리입니다.</p>
+          </a>
+          <a class="category-card" href="categories.html">
+            <span class="chip gray">전체</span>
+            <h3>카테고리 확장</h3>
+            <p>카테고리 허브에서 픽 수요가 높은 영역부터 운영 우선순위를 정합니다.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-column">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">N</span>
+          <span class="brand-copy"><strong>노써치</strong><span>nosearch</span></span>
+        </a>
+        <p class="footer-meta">추천은 제품 소개가 아니라 구매 결정 맥락을 제공하는 정보여야 합니다.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Links</h4>
+        <a href="main.html">메인</a>
+        <a href="guides.html">구매가이드</a>
+        <a href="price-watch.html">가격 추적</a>
+      </div>
+      <div class="footer-column">
+        <h4>Trust</h4>
+        <a href="verification.html">검증 프로세스</a>
+        <a href="update-schedule.html">업데이트 일정</a>
+      </div>
+      <div class="footer-column">
+        <h4>More</h4>
+        <a href="about.html">브랜드</a>
+        <a href="contact.html">문의하기</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

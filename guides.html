@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang=”ko”>
+<head>
+    <meta charset=”UTF-8”>
+    <meta name=”viewport” content=”width=device-width, initial-scale=1.0”>
+    <title>노써치 — 구매가이드</title>
+    <link href=”https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css” rel=”stylesheet”>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #256FFF;
+            --blue-light: #E8F2FF;
+            --blue-pale: #F5F9FF;
+            --accent-red: #FF455B;
+            --gray-10: #1A1A1A;
+            --gray-dark: #545454;
+            --gray-7: #787878;
+            --gray-5: #B3B3B3;
+            --gray-4: #C8C8C8;
+            --gray-3: #DFDFDF;
+            --border: #E5E7EB;
+            --gray-subtle: #EFEFEF;
+            --white: #FFFFFF;
+            --gray-1: #F9F9F9;
+            --ivory: #FAF9F5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--gray-10);
+            background-color: var(--gray-1);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============ TOPBAR ============ */
+        .topbar {
+            position: sticky;
+            top: 0;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(14px);
+            border-bottom: 1px solid var(--border);
+            z-index: 999;
+        }
+
+        .logo {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-text-ko {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-text-en {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gray-5);
+            letter-spacing: 0.05em;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-left: auto;
+        }
+
+        .nav-link {
+            position: relative;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-7);
+            text-decoration: none;
+            transition: color 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--gray-10);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            animation: livePulse 2s infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 69, 91, 0.6);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.15);
+                box-shadow: 0 0 0 6px rgba(255, 69, 91, 0);
+            }
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 48px 0 56px;
+        }
+
+        .hero-eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 0.06em;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gray-10);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .hero-sub {
+            font-size: 15px;
+            color: var(--gray-dark);
+            margin-bottom: 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--gray-7);
+            font-weight: 600;
+        }
+
+        /* ============ FILTER BAR ============ */
+        .filter-bar {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .filter-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-7);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .filter-btn:hover {
+            color: var(--gray-10);
+        }
+
+        .filter-btn.active {
+            background: var(--gray-10);
+            color: var(--white);
+        }
+
+        .sort-select {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-10);
+            background: var(--white);
+            cursor: pointer;
+            font-family: Pretendard, sans-serif;
+        }
+
+        /* ============ GUIDES GRID ============ */
+        .guides-section {
+            padding: 48px 0;
+        }
+
+        .block-head {
+            margin-bottom: 32px;
+        }
+
+        .block-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 0.06em;
+            margin-bottom: 8px;
+        }
+
+        .block-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--gray-10);
+            margin-bottom: 8px;
+        }
+
+        .block-sub {
+            font-size: 14px;
+            color: var(--gray-7);
+        }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .guides-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .guides-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .guide-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(26, 26, 26, 0.08);
+        }
+
+        .guide-card.testing {
+            opacity: 0.85;
+        }
+
+        .guide-card.testing .thumbnail {
+            filter: grayscale(0.7);
+        }
+
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: var(--gray-1);
+            position: relative;
+            display: grid;
+            place-items: center;
+            font-size: 52px;
+            transition: filter 0.15s ease;
+        }
+
+        .cat-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--gray-10);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .freshness-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .freshness-badge.fresh {
+            background: var(--accent-red);
+        }
+
+        .freshness-badge.today {
+            background: var(--accent-red);
+        }
+
+        .freshness-badge.recent {
+            background: rgba(26, 26, 26, 0.8);
+        }
+
+        .freshness-badge.testing {
+            background: var(--gray-dark);
+            font-size: 9px;
+        }
+
+        .card-body {
+            padding: 18px 20px 22px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--gray-10);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 14px;
+            font-size: 12px;
+            color: var(--gray-7);
+            margin-bottom: 14px;
+        }
+
+        .card-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-update-box {
+            background: var(--blue-pale);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+            font-size: 12.5px;
+            color: var(--gray-dark);
+            line-height: 1.5;
+        }
+
+        .card-update-label {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 11px;
+        }
+
+        .card-progress-box {
+            background: var(--gray-subtle);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+            font-size: 12.5px;
+            color: var(--gray-dark);
+            line-height: 1.5;
+        }
+
+        .card-progress-label {
+            font-weight: 700;
+            color: var(--gray-dark);
+            font-size: 11px;
+        }
+
+        .card-cta {
+            margin-top: auto;
+            padding: 12px 0;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background: var(--blue-pale);
+            color: var(--primary);
+            text-decoration: none;
+            display: block;
+        }
+
+        .card-cta:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .card-cta.outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--gray-7);
+        }
+
+        .card-cta.outline:hover {
+            background: var(--gray-1);
+            border-color: var(--gray-5);
+            color: var(--gray-10);
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--gray-10);
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            padding: 48px 0 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+        }
+
+        .footer-col h4 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            padding: 32px 0;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 560px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .hero-stats {
+                gap: 24px;
+            }
+
+            .stat-number {
+                font-size: 24px;
+            }
+
+            .filter-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .sort-select {
+                width: 100%;
+            }
+
+            .block-title {
+                font-size: 20px;
+            }
+
+            .nav {
+                gap: 16px;
+            }
+
+            .nav-link {
+                font-size: 12px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============ TOPBAR ============ -->
+    <header class=”topbar”>
+        <a href=”index.html” class=”logo”>
+            <span class=”logo-text-ko”>노써치</span>
+            <span class=”logo-text-en”>nosearch</span>
+        </a>
+        <nav class=”nav”>
+            <a href=”index.html#updates” class=”nav-link”>
+                <span class=”live-dot”></span>
+                최근 업데이트
+            </a>
+            <a href=”picks.html” class=”nav-link”>노써치픽</a>
+            <a href=”guides.html” class=”nav-link active”>구매가이드</a>
+            <a href=”index.html#categories” class=”nav-link”>카테고리</a>
+        </nav>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class=”hero”>
+        <div class=”container”>
+            <div class=”hero-eyebrow”>NOSEARCH GUIDE · 노써치 CM이 직접 검증</div>
+            <h1>변할 때마다 기록하는 구매가이드</h1>
+            <p class=”hero-sub”>사람 CM이 제품을 직접 쓰고, 순위가 바뀔 때마다 이유를 함께 기록합니다.</p>
+            <div class=”hero-stats”>
+                <div class=”stat”>
+                    <div class=”stat-number”>24</div>
+                    <div class=”stat-label”>카테고리</div>
+                </div>
+                <div class=”stat”>
+                    <div class=”stat-number”>189</div>
+                    <div class=”stat-label”>개정 완료</div>
+                </div>
+                <div class=”stat”>
+                    <div class=”stat-number”>최신</div>
+                    <div class=”stat-label”>업데이트 3시간 전</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FILTER BAR ============ -->
+    <div class=”filter-bar”>
+        <div class=”container”>
+            <div class=”filter-content”>
+                <div class=”filter-tabs”>
+                    <button class=”filter-btn active” data-filter=”all”>전체</button>
+                    <button class=”filter-btn” data-filter=”home”>🏠 생활가전</button>
+                    <button class=”filter-btn” data-filter=”it”>💻 IT·디지털</button>
+                    <button class=”filter-btn” data-filter=”season”>🌤️ 계절가전</button>
+                    <button class=”filter-btn” data-filter=”kitchen”>🍽️ 주방가전</button>
+                    <button class=”filter-btn” data-filter=”av”>📺 영상·음향</button>
+                    <button class=”filter-btn” data-filter=”beauty”>💄 뷰티·헬스</button>
+                </div>
+                <select class=”sort-select”>
+                    <option>최신 업데이트 순</option>
+                    <option>개정 횟수 순</option>
+                    <option>가나다 순</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ GUIDES GRID ============ -->
+    <section class=”guides-section”>
+        <div class=”container”>
+            <div class=”block-head”>
+                <div class=”block-eyebrow”>RECENTLY UPDATED</div>
+                <h2 class=”block-title”>지금 확인할 구매가이드</h2>
+                <p class=”block-sub”>모든 가이드는 CM이 직접 개정합니다.</p>
+            </div>
+
+            <div class=”guides-grid”>
+                <!-- 1. 공기청정기 -->
+                <a href=”guide.html” class=”guide-card” data-cat=”home”>
+                    <div class=”thumbnail”>
+                        🌬️
+                        <div class=”cat-badge”>🏠 생활가전</div>
+                        <div class=”freshness-badge fresh”>⚡ 3시간 전</div>
+                    </div>
+                    <div class=”card-body”>
+                        <div class=”card-title”>공기청정기 추천 가이드</div>
+                        <div class=”card-meta”>
+                            <div class=”card-meta-item”>📝 김노써</div>
+                            <div class=”card-meta-item”>🔄 3번째 개정</div>
+                        </div>
+                        <div class=”card-update-box”>
+                            <span class=”card-update-label”>왜 바뀌었나:</span> 신제품 2개 반영 · 30평 이상 기준 1위 교체
+                        </div>
+                        <button class=”card-cta”>가이드 전체 보기 →</button>
+                    </div>
+                </a>
+
+                <!-- 2. 노트북 -->
+                <a href=”guide.html” class=”guide-card” data-cat=”it”>
+                    <div class=”thumbnail”>
+                        💻
+                        <div class=”cat-badge”>💻 IT·디지털</div>
+                        <div class=”freshness-badge today”>⚡ 오늘</div>
+                    </div>
+                    <div class=”card-body”>
+                        <div class=”card-title”>노트북 추천 가이드</div>
+                        <div class=”card-meta”>
+                            <div class=”card-meta-item”>📝 이큐레</div>
+                            <div class=”card-meta-item”>🔄 5번째 개정</div>
+                        </div>
+                        <div class=”card-update-box”>
+                            <span class=”card-update-label”>왜 바뀌었나:</span> 1주일 실사용 테스트 결과 반영 · 휴대성 1위 교체
+                        </div>
+                        <button class=”card-cta”>가이드 전체 보기 →</button>
+                    </div>
+                </a>
+
+                <!-- 3. TV -->
+                <a href=”guide.html” class=”guide-card” data-cat=”av”>
+                    <div class=”thumbnail”>
+                        📺
+                        <div class=”cat-badge”>📺 영상·음향</div>
+                        <div class=”freshness-badge recent”>어제</div>
+                    </div>
+                    <div class=”card-body”>
+                        <div class=”card-title”>TV 추천 가이드</div>
+                        <div class=”card-meta”>
+                            <div class=”card-meta-item”>📝 박써치</div>
+                            <div class=”card-meta-item”>🔄 12번째 개정</div>
+                        </div>
+                        <div class=”card-update-box”>
+                            <span class=”card-update-label”>왜 바뀌었나:</span> 가격 기준 순위 조정 · 삼성 Neo QLED 65” 할인 반영
+                        </div>
+                        <button class=”card-cta”>가이드 전체 보기 →</button>
+                    </div>
+                </a>
+
+                <!-- 4. 에어컨 스탠드형 -->
+                <a href=”guide.html” class=”guide-card” data-cat=”season”>
+                    <div class=”thumbnail”>
+                        ❄️
+                        <div class=”cat-badge”>🌤️ 계절가전</div>
+                        <div class=”freshness-badge recent”>2일 전</div>
+                    </div>
+                    <div class=”card-body”>
+                        <div class=”card-title”>에어컨 · 스탠드형 추천 가이드</div>
+                        <div class=”card-meta”>
+                            <div class=”card-meta-item”>📝 최픽</div>
+                            <div class=”card-meta-item”>🔄 8번째 개정</div>
+                        </div>
+                        <div class=”card-update-box”>
+                            <span class=”card-update-label”>왜 바뀌었나:</span> 2026년형 전수 조사 완료 · 삼성·LG 스탠드 라인업 재정렬
+                        </div>
+                        <button class=”card-cta”>가이드 전체 보기 →</button>
+                    </div>
+                </a>
+
+                <!-- 5. 로봇청소기 -->
+                <a href=”guide.html” class=”guide-card” data-cat=”home”>
+                    <div class=”thumbnail”>
+                        🧹
+                        <div class=”cat-badge”>🏠 생활가전</div>
+                        <div class=”freshness-badge recent”>4일 전</div>
+                    </div>
+                    <div class=”card-body”>
+                        <div class=”card-title”>로봇청소기 추천 가이드</div>
+                        <div class=”card-meta”>
+                            <div class=”card-meta-item”>📝 박써치</div>
+                            <div class=”card-meta-item”>🔄 4번째 개정</div>
+                        </div>
+                        <div class=”card-update-box”>
+                            <span class=”card-update-label”>왜 바뀌었나:</span> 리뷰 450건 재분석 · 물걸레 전용 모델 1위 교체
+                        </div>
+                        <button class=”card-cta”>가이드 전체 보기 →</button>
+                    </div>
+                </a>
+
+                <!-- 6. 무선이어폰 -->
+                <a href=”guide.html” class=”guide-card” data-cat=”it”>
+                    <div class=”thumbnail”>
+                        🎧
+                        <div class=”cat-badge”>💻 IT·디지털</div>
+                        <div class=”freshness-badge recent”>3일 전</div>
+                    </div>
+                    <div class=”card-body”>
+                        <div class=”card-title”>무선이어폰 · 오픈형 추천 가이드</div>
+                        <div class=”card-meta”>
+                            <div class=”card-meta-item”>📝 김노써</div>
+                            <div class=”card-meta-item”>🔄 6번째 개정</div>
+                        </div>
+                        <div class=”card-update-box”>
+                            <span class=”card-update-label”>왜 바뀌었나:</span> 신제품 3종 직접 청음 후 순위 재조정
+                        </div>
+                        <button class=”card-cta”>가이드 전체 보기 →</button>
+                    </div>
+                </a>
+
+                <!-- 7. 모니터 사무용 -->
+                <a href=”guide.html” class=”guide-card” data-cat=”it”>
+                    <div class=”thumbnail”>
+                        🖥️
+                        <div class=”cat-badge”>💻 IT·디지털</div>
+                        <div class=”freshness-badge recent”>5일 전</div>
+                    </div>
+                    <div class=”card-body”>
+                        <div class=”card-title”>모니터 · 사무용 추천 가이드</div>
+                        <div class=”card-meta”>
+                            <div class=”card-meta-item”>📝 이큐레</div>
+                            <div class=”card-meta-item”>🔄 7번째 개정</div>
+                        </div>
+                        <div class=”card-update-box”>
+                            <span class=”card-update-label”>왜 바뀌었나:</span> 27인치 4K 라인 가격 조정 · LG 27UP 시리즈 1위 교체
+                        </div>
+                        <button class=”card-cta”>가이드 전체 보기 →</button>
+                    </div>
+                </a>
+
+                <!-- 8. 에어프라이어 테스트 중 -->
+                <a href=”#” class=”guide-card testing” data-cat=”kitchen”>
+                    <div class=”thumbnail”>
+                        🍳
+                        <div class=”cat-badge”>🍽️ 주방가전</div>
+                        <div class=”freshness-badge testing”>🧪 테스트 중</div>
+                    </div>
+                    <div class=”card-body”>
+                        <div class=”card-title”>에어프라이어 추천 가이드</div>
+                        <div class=”card-meta”>
+                            <div class=”card-meta-item”>진행 중</div>
+                            <div class=”card-meta-item”>34% 완료</div>
+                        </div>
+                        <div class=”card-progress-box”>
+                            <span class=”card-progress-label”>진행 상황:</span> 가정용 5L급 · 조리 품질·세척·전기료 측정 중
+                        </div>
+                        <button class=”card-cta outline”>업데이트 알림 받기</button>
+                    </div>
+                </a>
+
+                <!-- 9. 헤어드라이어 테스트 중 -->
+                <a href=”#” class=”guide-card testing” data-cat=”beauty”>
+                    <div class=”thumbnail”>
+                        💨
+                        <div class=”cat-badge”>💄 뷰티·헬스</div>
+                        <div class=”freshness-badge testing”>🧪 D-14</div>
+                    </div>
+                    <div class=”card-body”>
+                        <div class=”card-title”>헤어드라이어 추천 가이드</div>
+                        <div class=”card-meta”>
+                            <div class=”card-meta-item”>DB 수집 중</div>
+                            <div class=”card-meta-item”>18% 완료</div>
+                        </div>
+                        <div class=”card-progress-box”>
+                            <span class=”card-progress-label”>진행 상황:</span> 국내 판매 30종 스펙 정규화 · 풍량·소음 벤치마크
+                        </div>
+                        <button class=”card-cta outline”>업데이트 알림 받기</button>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class=”footer”>
+        <div class=”container”>
+            <div class=”footer-content”>
+                <div class=”footer-col”>
+                    <h4>서비스</h4>
+                    <ul>
+                        <li><a href=”guides.html”>구매가이드</a></li>
+                        <li><a href=”index.html#categories”>카테고리</a></li>
+                        <li><a href=”#”>가격 알림</a></li>
+                        <li><a href=”#”>앱 다운로드</a></li>
+                    </ul>
+                </div>
+                <div class=”footer-col”>
+                    <h4>회사</h4>
+                    <ul>
+                        <li><a href=”#”>소개</a></li>
+                        <li><a href=”#”>채용</a></li>
+                        <li><a href=”#”>블로그</a></li>
+                        <li><a href=”#”>제휴문의</a></li>
+                    </ul>
+                </div>
+                <div class=”footer-col”>
+                    <h4>고객지원</h4>
+                    <ul>
+                        <li><a href=”#”>문의하기</a></li>
+                        <li><a href=”#”>FAQ</a></li>
+                        <li><a href=”#”>이용약관</a></li>
+                        <li><a href=”#”>개인정보처리방침</a></li>
+                    </ul>
+                </div>
+                <div class=”footer-col”>
+                    <h4>팔로우</h4>
+                    <ul>
+                        <li><a href=”#”>유튜브</a></li>
+                        <li><a href=”#”>인스타그램</a></li>
+                        <li><a href=”#”>네이버 블로그</a></li>
+                        <li><a href=”#”>X (트위터)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class=”footer-bottom”>
+            <p>© 2026 Nosearch. 모든 구매가이드는 사람 노써치 CM이 작성합니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 필터 탭 기능
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const guideCards = document.querySelectorAll('.guide-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                guideCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = card.dataset.cat === filter ? '' : 'none';
+                    }
+                });
+            });
+        });
+
+        // 테스트 중 카드에 대한 클릭 방지
+        const testingCards = document.querySelectorAll('.guide-card.testing');
+        testingCards.forEach(card => {
+            card.addEventListener('click', e => {
+                e.preventDefault();
+            });
+
+            const outlineBtn = card.querySelector('.card-cta.outline');
+            if (outlineBtn) {
+                outlineBtn.addEventListener('click', e => {
+                    e.preventDefault();
+                    alert('업데이트 알림 구독 준비 중입니다.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

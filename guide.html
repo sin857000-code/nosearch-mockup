@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공기청정기 추천 가이드 — 노써치</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #256FFF;
+      --blue-light: #E8F2FF;
+      --blue-pale: #F5F9FF;
+      --accent-red: #FF455B;
+      --gray-10: #1A1A1A;
+      --gray-dark: #545454;
+      --gray-7: #787878;
+      --gray-5: #B3B3B3;
+      --gray-4: #C8C8C8;
+      --gray-3: #DFDFDF;
+      --border: #E5E7EB;
+      --gray-subtle: #EFEFEF;
+      --white: #FFFFFF;
+      --gray-1: #F9F9F9;
+      --ivory: #FAF9F5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--gray-10);
+      background-color: var(--white);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .topbar-content {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .topbar-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .topbar-nav {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .topbar-nav a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-7);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .topbar-nav a:hover {
+      color: var(--gray-10);
+    }
+
+    .topbar-nav a.active {
+      color: var(--primary);
+    }
+
+    .topbar-nav a.has-dot::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--accent-red);
+      border-radius: 50%;
+      top: -8px;
+      right: -12px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      background: var(--gray-1);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      font-size: 13px;
+      color: var(--gray-7);
+    }
+
+    .breadcrumb-content {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .breadcrumb a {
+      color: var(--gray-7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--gray-10);
+    }
+
+    .breadcrumb-sep {
+      margin: 0 6px;
+      color: var(--gray-4);
+    }
+
+    .breadcrumb-current {
+      color: var(--gray-10);
+      font-weight: 600;
+    }
+
+    /* Article Header */
+    .article-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 0 36px;
+    }
+
+    .article-header-content {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .category-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-light);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 6px;
+      padding: 5px 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--gray-10);
+      margin-bottom: 16px;
+    }
+
+    .cm-info {
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+      color: var(--gray-7);
+      margin-bottom: 20px;
+    }
+
+    .update-reason-box {
+      background: var(--blue-pale);
+      border-radius: 10px;
+      padding: 14px 18px;
+      border-left: 4px solid var(--primary);
+      margin-top: 20px;
+    }
+
+    .update-reason-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .update-reason-text {
+      font-size: 13px;
+      color: var(--gray-10);
+      line-height: 1.5;
+    }
+
+    /* Article Layout */
+    .article-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 48px;
+      padding: 40px 0 80px;
+      align-items: start;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .article-body {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 36px 40px;
+      border: 1px solid var(--border);
+      max-width: 720px;
+    }
+
+    .article-body p {
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      color: var(--gray-10);
+    }
+
+    .article-body h2 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--gray-10);
+      margin-top: 32px;
+    }
+
+    .article-body h2:first-child {
+      margin-top: 0;
+    }
+
+    .article-body > .divider {
+      margin: 32px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: var(--gray-10);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 800;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-10);
+    }
+
+    .chapter-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gray-10);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    .q-box {
+      background: var(--blue-pale);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-10);
+    }
+
+    .q-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .info-box {
+      background: var(--gray-1);
+      border-radius: 8px;
+      padding: 14px 18px;
+      border-left: 3px solid var(--primary);
+      margin: 20px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--gray-10);
+    }
+
+    .warning-box {
+      background: #FFF4F6;
+      border: 1px solid #FFDCDF;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #C2185B;
+    }
+
+    .cm-tip-box {
+      background: var(--blue-pale);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--gray-10);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    table th {
+      background: var(--gray-10);
+      color: var(--white);
+      font-weight: 700;
+      padding: 12px 16px;
+      text-align: left;
+      border: none;
+    }
+
+    table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    table tr:nth-child(even) {
+      background: var(--gray-1);
+    }
+
+    table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 280px;
+    }
+
+    .toc-box,
+    .cta-box,
+    .related-guides-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .box-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-10);
+      margin-bottom: 16px;
+    }
+
+    .toc-list {
+      list-style: none;
+    }
+
+    .toc-list li {
+      margin-bottom: 12px;
+    }
+
+    .toc-list a {
+      font-size: 13px;
+      color: var(--gray-dark);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: block;
+      padding-left: 0;
+    }
+
+    .toc-list a:hover {
+      color: var(--primary);
+    }
+
+    .toc-list a.active {
+      color: var(--primary);
+      font-weight: 600;
+      border-left: 2px solid var(--primary);
+      padding-left: 8px;
+    }
+
+    .cta-box {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+    }
+
+    .cta-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .cta-product {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue-light);
+      margin-bottom: 8px;
+    }
+
+    .cta-price {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .cta-button {
+      width: 100%;
+      background: var(--white);
+      color: var(--primary);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 0;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .cta-button:hover {
+      opacity: 0.9;
+    }
+
+    .related-guides-box .box-title {
+      font-size: 12px;
+      color: var(--gray-7);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .related-guides-list {
+      list-style: none;
+    }
+
+    .related-guides-list li {
+      margin-bottom: 10px;
+    }
+
+    .related-guides-list a {
+      font-size: 13px;
+      color: var(--gray-dark);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .related-guides-list a:hover {
+      color: var(--primary);
+    }
+
+    /* Picks Section */
+    .picks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .pick-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .pick-card-top {
+      border-top: 4px solid;
+      padding: 0;
+    }
+
+    .pick-card-top.best {
+      border-top-color: var(--primary);
+    }
+
+    .pick-card-top.value {
+      border-top-color: #16A34A;
+    }
+
+    .pick-card-top.plus {
+      border-top-color: var(--gray-10);
+    }
+
+    .pick-card-header {
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .pick-card-header.best {
+      background: var(--blue-light);
+      color: var(--primary);
+    }
+
+    .pick-card-header.value {
+      background: #DCFCE7;
+      color: #166534;
+    }
+
+    .pick-card-header.plus {
+      background: var(--gray-subtle);
+      color: var(--gray-10);
+    }
+
+    .pick-card-body {
+      padding: 16px 20px;
+    }
+
+    .pick-product-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-10);
+      margin-bottom: 8px;
+    }
+
+    .pick-reason {
+      font-size: 12px;
+      color: var(--gray-7);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .pick-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .pick-button {
+      width: 100%;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      padding: 8px 0;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .pick-button:hover {
+      opacity: 0.9;
+    }
+
+    .revision-history {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .revision-history-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-10);
+      margin-bottom: 16px;
+    }
+
+    .revision-history-list {
+      list-style: none;
+      font-size: 13px;
+      color: var(--gray-7);
+      line-height: 1.8;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--gray-10);
+      color: #999;
+      padding: 60px 0 40px;
+      margin-top: 120px;
+      font-size: 13px;
+    }
+
+    .footer-content {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h4 {
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section li {
+      margin-bottom: 8px;
+    }
+
+    .footer-section a {
+      color: #999;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-section a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 24px;
+      text-align: center;
+      color: #666;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .article-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .article-body {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .topbar-content {
+        padding: 0 16px;
+        gap: 24px;
+      }
+
+      .article-header-content {
+        padding: 0 16px;
+      }
+
+      .article-header h1 {
+        font-size: 22px;
+      }
+
+      .article-body {
+        padding: 20px 24px;
+      }
+
+      .cm-info {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+
+      .picks-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-nav {
+        gap: 20px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .article-header h1 {
+        font-size: 18px;
+      }
+
+      .article-body {
+        padding: 16px 20px;
+        border-radius: 8px;
+      }
+
+      table {
+        font-size: 12px;
+      }
+
+      table th,
+      table td {
+        padding: 8px 12px;
+      }
+
+      .section-title {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-content">
+      <a href="index.html" class="topbar-logo">노써치</a>
+      <nav class="topbar-nav">
+        <a href="index.html#updates" class="has-dot">최근 업데이트</a>
+        <a href="picks.html">노써치픽</a>
+        <a href="guides.html" class="active">구매가이드</a>
+        <a href="index.html#categories">카테고리</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-content">
+      <a href="index.html">홈</a>
+      <span class="breadcrumb-sep">></span>
+      생활가전
+      <span class="breadcrumb-sep">></span>
+      <span class="breadcrumb-current">공기청정기 추천 가이드</span>
+    </div>
+  </div>
+
+  <!-- Article Header -->
+  <div class="article-header">
+    <div class="article-header-content">
+      <div class="category-chip">🏠 생활가전 · 공기청정기</div>
+      <h1>공기청정기 추천 가이드 — CM이 직접 검증한 2026년 최신 순위</h1>
+      <div class="cm-info">
+        <div>📝 노써치 CM 김노써</div>
+        <div>🔄 3번째 개정</div>
+        <div>🕒 2026-04-22 업데이트</div>
+      </div>
+      <div class="update-reason-box">
+        <div class="update-reason-label">🔄 왜 바뀌었나</div>
+        <div class="update-reason-text">신제품 2개 반영 (삼성 비스포크 큐브 Air 신형, LG 퓨리케어 신형) · 30평 이상 기준 1위 교체 · 렌탈 비용 비교 챕터 추가</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="article-layout">
+      <!-- Article Body -->
+      <div class="article-body">
+        <!-- Section 0: Intro -->
+        <div id="intro">
+          <div class="chapter-badge">📘 Chapter 0 — 인트로</div>
+          <h2>읽기 전에 — 이 가이드의 기준</h2>
+          <p>노써치 CM 김노써가 공기청정기 12개 모델을 8주에 걸쳐 직접 테스트했습니다. 광고, 협찬 없습니다.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>기준 항목</th>
+                <th>확인 방법</th>
+                <th>중요도</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>사용 면적 (평수)</td>
+                <td>제품 사양 청정 면적 × 0.7 보정값</td>
+                <td>★★★ 필수</td>
+              </tr>
+              <tr>
+                <td>PM 센서 신뢰도</td>
+                <td>레이저 vs 광학 방식 구분</td>
+                <td>★★★ 필수</td>
+              </tr>
+              <tr>
+                <td>소음 (dB)</td>
+                <td>자동 모드 평균값, 수면 모드 기준</td>
+                <td>★★ 중요</td>
+              </tr>
+              <tr>
+                <td>필터 교체 비용</td>
+                <td>연간 유지비 (필터가 + 교체 주기)</td>
+                <td>★★ 중요</td>
+              </tr>
+              <tr>
+                <td>가스 센서 포함 여부</td>
+                <td>VOC·CO₂ 감지 센서 유무</td>
+                <td>★ 선택적</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="divider"></div>
+        </div>
+
+        <!-- Section 1: Usage Area -->
+        <div id="section-1">
+          <div class="section-header">
+            <div class="section-badge">1</div>
+            <h2 class="section-title">사용 면적이 기준의 시작입니다</h2>
+          </div>
+
+          <div class="q-box">
+            <div class="q-label">Q</div>
+            <div>몇 평짜리 방에 쓰는지가 왜 중요한가요?</div>
+          </div>
+
+          <p>공기청정기의 핵심 스펙인 CADR(청정 공기 공급량)은 시간당 얼마나 많은 공기를 정화할 수 있는지를 나타냅니다. 제조사가 표기한 '청정 면적'은 보통 이상적인 환경 기준이라 실제 사용 환경에서는 약 70% 정도로 보정해서 보는 게 맞습니다.</p>
+
+          <p>예를 들어 '30평 대응'이라고 표기된 제품은 실제로는 21평 정도에서 최적 성능이 나옵니다.</p>
+
+          <div class="info-box">
+            💡 <strong>노써치 CM 팁:</strong> 거실과 침실에서 같은 기기를 이동해 쓸 계획이라면, 두 공간 중 더 넓은 쪽 기준으로 선택하세요.
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>사용 공간</th>
+                <th>권장 CADR</th>
+                <th>대표 제품</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>침실 (8~12평)</td>
+                <td>150~200</td>
+                <td>LG 퓨리케어 AS120VSKA</td>
+              </tr>
+              <tr>
+                <td>거실 (18~23평)</td>
+                <td>300~400</td>
+                <td>LG 퓨리케어 오브제 360°</td>
+              </tr>
+              <tr>
+                <td>거실 (30평 이상)</td>
+                <td>500 이상</td>
+                <td>삼성 비스포크 큐브 Air 60평형</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="divider"></div>
+        </div>
+
+        <!-- Section 2: PM Sensor -->
+        <div id="section-2">
+          <div class="section-header">
+            <div class="section-badge">2</div>
+            <h2 class="section-title">PM 센서 신뢰도 확인법</h2>
+          </div>
+
+          <div class="q-box">
+            <div class="q-label">Q</div>
+            <div>PM2.5 센서가 다 같은 건 아닌가요?</div>
+          </div>
+
+          <p>아닙니다. PM 센서는 크게 레이저 방식과 광학(LED) 방식으로 나뉩니다. 레이저 방식이 더 정확하지만 가격이 비쌉니다. 중저가 제품 중 'PM 2.5 센서 탑재'라고 광고하면서 광학 방식을 쓰는 제품이 많으니 주의가 필요합니다.</p>
+
+          <div class="warning-box">
+            ⚠️ <strong>주의:</strong> 제품 설명에 'PM 센서 탑재'만 적혀 있고 레이저/광학 방식을 명시하지 않은 경우, 스펙시트 PDF를 직접 확인하거나 제조사 고객센터에 문의하세요.
+          </div>
+
+          <div class="divider"></div>
+        </div>
+
+        <!-- Section 3: Gas Sensor -->
+        <div id="section-3">
+          <div class="section-header">
+            <div class="section-badge">3</div>
+            <h2 class="section-title">가스 센서가 필요한 경우</h2>
+          </div>
+
+          <div class="q-box">
+            <div class="q-label">Q</div>
+            <div>가스 센서가 뭔지, 필요한 건가요?</div>
+          </div>
+
+          <p>가스 센서는 VOC(휘발성 유기화합물)와 CO₂를 감지하는 센서입니다. 새 가구나 도배 직후의 집, 또는 새집이라면 유용합니다. 그 외 일반 가정에서는 PM 센서 품질을 우선시하는 게 맞습니다.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>상황</th>
+                <th>가스 센서 필요도</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>신축 아파트 입주 예정</td>
+                <td>★★★ 권장</td>
+              </tr>
+              <tr>
+                <td>새 가구·도배 직후</td>
+                <td>★★★ 권장</td>
+              </tr>
+              <tr>
+                <td>반려동물 있는 가정</td>
+                <td>★★ 선택적</td>
+              </tr>
+              <tr>
+                <td>일반 가정 (5년 이상 거주)</td>
+                <td>★ 불필요</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="divider"></div>
+        </div>
+
+        <!-- Section 4: Additional Features -->
+        <div id="section-4">
+          <div class="section-header">
+            <div class="section-badge">4</div>
+            <h2 class="section-title">부가 기능 선택법</h2>
+          </div>
+
+          <div class="q-box">
+            <div class="q-label">Q</div>
+            <div>필터 관리 알림, 자동 모드 — 실제로 쓸만한가요?</div>
+          </div>
+
+          <p>자동 모드는 확실히 써볼 만 합니다. 노써치 CM이 8주 실사용 테스트에서 확인한 결과, 대부분의 경우 자동 모드에서 수동 설정보다 소음은 낮추고 청정 효율은 비슷하게 유지했습니다. 필터 교체 알림은 모델마다 기준이 달라서, 실제 교체 시기보다 빠르거나 늦게 알리는 경우가 있습니다.</p>
+
+          <div class="cm-tip-box">
+            필터 교체 비용을 2년 기준으로 계산해보세요. 저렴한 제품이라도 필터 단가가 높으면 총 보유 비용이 역전됩니다.
+          </div>
+
+          <div class="divider"></div>
+        </div>
+
+        <!-- Section 5: Rental vs Purchase -->
+        <div id="section-5">
+          <div class="section-header">
+            <div class="section-badge">5</div>
+            <h2 class="section-title">렌탈 vs 구매</h2>
+          </div>
+
+          <div class="q-box">
+            <div class="q-label">Q</div>
+            <div>렌탈이 유리한 경우가 있나요?</div>
+          </div>
+
+          <p>있습니다. 다만 조건이 좁습니다. 렌탈이 유리한 경우: 초기 구매 비용 부담이 큰 경우 / 필터 교체·관리가 번거로운 경우 / 2년 이내 이사 예정인 경우. 그 외 대부분의 경우 5년 기준으로 계산하면 구매가 유리합니다.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>렌탈 (월 2만원 5년)</th>
+                <th>구매 (₩689,000)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>5년 총 비용</td>
+                <td>약 120만원</td>
+                <td>약 90만원 (필터 포함)</td>
+              </tr>
+              <tr>
+                <td>이사 시 처리</td>
+                <td>반납 가능</td>
+                <td>직접 처리</td>
+              </tr>
+              <tr>
+                <td>필터 관리</td>
+                <td>렌탈사 주기 교체</td>
+                <td>직접 구매·교체</td>
+              </tr>
+              <tr>
+                <td>CM 추천</td>
+                <td>❌ 비추 (일반)</td>
+                <td>✅ 추천 (일반)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="divider"></div>
+        </div>
+
+        <!-- Section 6: CM Picks -->
+        <div id="picks-section">
+          <div class="chapter-badge">🏆 CM 픽 — 2026년 4월 기준</div>
+          <h2>지금 노써치 CM이 추천하는 공기청정기</h2>
+
+          <div class="picks-grid">
+            <!-- Best Pick -->
+            <div class="pick-card">
+              <div class="pick-card-top best">
+                <div class="pick-card-header best">🥇 베스트픽</div>
+              </div>
+              <div class="pick-card-body">
+                <div class="pick-product-name">LG 퓨리케어 오브제컬렉션 360°</div>
+                <div class="pick-reason">PM1.0 초미세먼지 감지 + 청정 면적 대비 소음 최저 모델</div>
+                <div class="pick-price">₩689,000</div>
+                <button class="pick-button">최저가 확인</button>
+              </div>
+            </div>
+
+            <!-- Value Pick -->
+            <div class="pick-card">
+              <div class="pick-card-top value">
+                <div class="pick-card-header value">💰 가성비픽</div>
+              </div>
+              <div class="pick-card-body">
+                <div class="pick-product-name">삼성 비스포크 큐브 Air 30평형</div>
+                <div class="pick-reason">CADR 대비 가격 최저 구간 진입. 30평 이하 거실 기준 가성비 1순위</div>
+                <div class="pick-price">₩389,000</div>
+                <button class="pick-button">최저가 확인</button>
+              </div>
+            </div>
+
+            <!-- Plus Pick -->
+            <div class="pick-card">
+              <div class="pick-card-top plus">
+                <div class="pick-card-header plus">⭐ 플러스픽 (소음 최소)</div>
+              </div>
+              <div class="pick-card-body">
+                <div class="pick-product-name">블루에어 Blue Pure 311i+ Max</div>
+                <div class="pick-reason">수면 중 사용 기준 소음 최저. 디자인·조용함 최우선인 경우만 추천</div>
+                <div class="pick-price">₩449,000</div>
+                <button class="pick-button">최저가 확인</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="revision-history">
+            <div class="revision-history-title">🔄 개정 기록</div>
+            <ul class="revision-history-list">
+              <li><strong>2026-04-22</strong> (3번째): 신제품 2종 반영, 30평 이상 1위 교체</li>
+              <li><strong>2026-03-15</strong> (2번째): 렌탈 비교 챕터 추가</li>
+              <li><strong>2026-01-08</strong> (1번째): 최초 발행</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- TOC Box -->
+        <div class="toc-box">
+          <div class="box-title">목차</div>
+          <ul class="toc-list">
+            <li><a href="#intro" class="toc-link active">0. 인트로 — 핵심 기준 요약</a></li>
+            <li><a href="#section-1" class="toc-link">1. 사용 면적이 기준의 시작</a></li>
+            <li><a href="#section-2" class="toc-link">2. PM 센서 신뢰도 확인법</a></li>
+            <li><a href="#section-3" class="toc-link">3. 가스 센서가 필요한 경우</a></li>
+            <li><a href="#section-4" class="toc-link">4. 부가 기능 선택법</a></li>
+            <li><a href="#section-5" class="toc-link">5. 렌탈 vs 구매</a></li>
+            <li><a href="#picks-section" class="toc-link">6. CM 픽 — 지금 추천</a></li>
+          </ul>
+        </div>
+
+        <!-- CTA Box -->
+        <div class="cta-box">
+          <div class="cta-title">🏆 지금 1위 바로 보기</div>
+          <div class="cta-product">LG 퓨리케어 오브제컬렉션 360°</div>
+          <div class="cta-price">₩689,000</div>
+          <button class="cta-button">최저가 확인</button>
+        </div>
+
+        <!-- Related Guides Box -->
+        <div class="related-guides-box">
+          <div class="box-title">관련 가이드</div>
+          <ul class="related-guides-list">
+            <li><a href="guide.html">무선청소기 추천 가이드</a></li>
+            <li><a href="guide.html">의류관리기 추천 가이드</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h4>서비스</h4>
+          <ul>
+            <li><a href="guides.html">구매가이드</a></li>
+            <li><a href="index.html#categories">카테고리</a></li>
+            <li><a href="#">가격 알림</a></li>
+            <li><a href="#">앱 다운로드</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>회사</h4>
+          <ul>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">채용</a></li>
+            <li><a href="#">블로그</a></li>
+            <li><a href="#">제휴문의</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>고객지원</h4>
+          <ul>
+            <li><a href="#">문의하기</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">개인정보처리방침</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>팔로우</h4>
+          <ul>
+            <li><a href="#">유튜브</a></li>
+            <li><a href="#">인스타그램</a></li>
+            <li><a href="#">X (트위터)</a></li>
+            <li><a href="#">뉴스레터</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 Nosearch. 모든 구매가이드는 사람 노써치 CM이 작성합니다.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // TOC 클릭 시 smooth scroll
+    document.querySelectorAll('.toc-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // 활성 링크 업데이트
+          document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // 스크롤 시 TOC 활성화 (옵션)
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('[id^="section-"], [id="intro"], [id="picks-section"]');
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top >= 0 && rect.top < 200) {
+          document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+          const link = document.querySelector(`a[href="#${section.id}"]`);
+          if (link) link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
