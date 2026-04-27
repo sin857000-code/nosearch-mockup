@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>노트북 추천 - 노써치픽</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <style>
+        :root {
+            --primary: #256FFF;
+            --blue-light: #E8F2FF;
+            --blue-pale: #F5F9FF;
+            --accent-red: #FF455B;
+            --gray-10: #1A1A1A;
+            --gray-dark: #545454;
+            --gray-7: #787878;
+            --gray-5: #B3B3B3;
+            --gray-3: #DFDFDF;
+            --border: #E5E7EB;
+            --gray-subtle: #EFEFEF;
+            --white: #FFFFFF;
+            --gray-1: #F9F9F9;
+            --green-600: #16A34A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            color: var(--gray-10);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        .topbar {
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav a, .nav span {
+            font-size: 14px;
+            color: var(--gray-7);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: var(--gray-10);
+        }
+
+        .nav a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .live-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero {
+            padding: 40px 20px;
+            background: var(--white);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            font-size: 12px;
+            color: var(--gray-7);
+            margin-bottom: 12px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .eyebrow {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+            color: var(--gray-10);
+        }
+
+        .update-tag {
+            display: inline-block;
+            background: var(--blue-light);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        .tier-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .tier-card {
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .tier-card.best {
+            background: var(--blue-pale);
+            border-color: var(--primary);
+        }
+
+        .tier-card.value {
+            background: #F0FDF4;
+            border-color: var(--green-600);
+        }
+
+        .tier-card.plus {
+            background: #F5F5F5;
+            border-color: var(--gray-3);
+        }
+
+        .tier-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tier-card .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-red);
+        }
+
+        .tier-card .desc {
+            font-size: 13px;
+            color: var(--gray-7);
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .picks-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .picks-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .pick-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            background: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .pick-image {
+            background: var(--gray-subtle);
+            border-radius: 8px;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: var(--gray-7);
+            font-weight: 500;
+        }
+
+        .pick-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .pick-tier {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: fit-content;
+        }
+
+        .pick-tier.best {
+            color: var(--primary);
+        }
+
+        .pick-tier.value {
+            color: var(--green-600);
+        }
+
+        .pick-tier.plus {
+            color: var(--gray-dark);
+        }
+
+        .pick-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-10);
+        }
+
+        .pick-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-red);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .price-badge {
+            background: var(--accent-red);
+            color: var(--white);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .spec-chip {
+            background: var(--gray-1);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--gray-7);
+            font-weight: 500;
+        }
+
+        .cm-box {
+            background: var(--blue-pale);
+            border-left: 3px solid var(--primary);
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: var(--gray-10);
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border-radius: 6px;
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: #1e54cc;
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--blue-pale);
+        }
+
+        .comparison-section {
+            max-width: 1200px;
+            margin: 48px auto;
+            padding: 0 20px;
+        }
+
+        .comparison-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--gray-10);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table thead {
+            background: var(--gray-1);
+        }
+
+        .comparison-table th {
+            padding: 16px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gray-10);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table td {
+            padding: 16px;
+            font-size: 13px;
+            color: var(--gray-7);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-watch {
+            max-width: 1200px;
+            margin: 48px auto;
+            padding: 0 20px;
+        }
+
+        .price-watch h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--gray-10);
+        }
+
+        .price-cards {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 16px;
+        }
+
+        .price-card {
+            flex: 0 0 280px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            background: var(--white);
+        }
+
+        .price-card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-10);
+            margin-bottom: 8px;
+        }
+
+        .price-change {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-red);
+        }
+
+        .price-watch-link {
+            display: inline-block;
+            margin-top: 16px;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .price-watch-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: var(--gray-1);
+            border-top: 1px solid var(--border);
+            padding: 32px 20px;
+            margin-top: 48px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            font-size: 12px;
+            color: var(--gray-7);
+            line-height: 1.8;
+        }
+
+        .footer-col h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gray-10);
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: var(--gray-7);
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            color: var(--gray-10);
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                gap: 16px;
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .tier-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pick-card {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .comparison-table {
+                font-size: 12px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="topbar">
+        <a href="index.html" class="logo">노써치</a>
+        <div class="nav">
+            <span class="live-dot"><span class="dot"></span>최근 업데이트</span>
+            <a href="picks.html" class="active">노써치픽</a>
+            <a href="guides.html">구매가이드</a>
+            <a href="index.html#categories">카테고리</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="breadcrumb">
+            <a href="picks.html">노써치픽</a>
+            <span>></span>
+            <span>노트북</span>
+        </div>
+        <div class="eyebrow">NOSEARCH PICK · 노트북 CM 직접 선정</div>
+        <h1>노트북 — 지금 가장 잘 사는 선택</h1>
+        <span class="update-tag">2026년 4월 27일 업데이트</span>
+    </section>
+
+    <div class="tier-cards">
+        <div class="tier-card best">
+            <h3>베스트픽</h3>
+            <div class="price">맥북</div>
+            <div class="desc">M4 성능<br>배터리 18h</div>
+        </div>
+        <div class="tier-card value">
+            <h3>가성비픽</h3>
+            <div class="price">LG 그램</div>
+            <div class="desc">16인치<br>최경량</div>
+        </div>
+        <div class="tier-card plus">
+            <h3>플러스픽</h3>
+            <div class="price">맥북 프로</div>
+            <div class="desc">영상편집<br>전문가용</div>
+        </div>
+    </div>
+
+    <section class="picks-section">
+        <div class="picks-container">
+            <div class="pick-card">
+                <div class="pick-image">[노트북 이미지]</div>
+                <div class="pick-info">
+                    <div class="pick-tier best">⭐ 베스트픽</div>
+                    <div class="pick-name">맥북 에어 M4 13인치 16GB</div>
+                    <div class="pick-price">
+                        ₩1,749,000
+                        <span class="price-badge">↓8%</span>
+                    </div>
+                    <div class="specs">
+                        <span class="spec-chip">M4칩</span>
+                        <span class="spec-chip">배터리18h</span>
+                        <span class="spec-chip">1.24kg</span>
+                        <span class="spec-chip">Liquid Retina</span>
+                    </div>
+                    <div class="cm-box">
+                        배터리·성능·휴대성 모두 기준 이상. 영상편집 제외 대부분 작업 가성비 1순위
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary">상세 정보 보기</button>
+                        <a href="guides.html" class="btn btn-secondary">구매가이드 전체 보기 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pick-card">
+                <div class="pick-image">[노트북 이미지]</div>
+                <div class="pick-info">
+                    <div class="pick-tier value">💰 가성비픽</div>
+                    <div class="pick-name">LG 그램 16 2025 (i5)</div>
+                    <div class="pick-price">
+                        ₩1,750,000
+                        <span class="price-badge">↓7%</span>
+                    </div>
+                    <div class="specs">
+                        <span class="spec-chip">Ultra5</span>
+                        <span class="spec-chip">1.19kg</span>
+                        <span class="spec-chip">배터리22h</span>
+                        <span class="spec-chip">WQXGA</span>
+                    </div>
+                    <div class="cm-box">
+                        16인치 화면 중 최경량. 사무용·문서작업 기준 가성비 최고
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary">상세 정보 보기</button>
+                        <a href="guides.html" class="btn btn-secondary">구매가이드 전체 보기 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pick-card">
+                <div class="pick-image">[노트북 이미지]</div>
+                <div class="pick-info">
+                    <div class="pick-tier plus">🎯 플러스픽</div>
+                    <div class="pick-name">맥북 프로 M4 14인치</div>
+                    <div class="pick-price">₩2,490,000</div>
+                    <div class="specs">
+                        <span class="spec-chip">M4Pro</span>
+                        <span class="spec-chip">배터리24h</span>
+                        <span class="spec-chip">ProMotion120Hz</span>
+                        <span class="spec-chip">미니LED</span>
+                    </div>
+                    <div class="cm-box">
+                        영상편집·음악제작 전문가 한정 추천. 일반 사용자는 에어로 충분
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary">상세 정보 보기</button>
+                        <a href="picks.html" class="btn btn-secondary">노써치픽 전체 보기 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <h2>주요 스펙 비교</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>스펙</th>
+                    <th>베스트픽<br>맥북 에어</th>
+                    <th>가성비픽<br>LG 그램</th>
+                    <th>플러스픽<br>맥북 프로</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CPU</td>
+                    <td>M4</td>
+                    <td>Intel Core Ultra5</td>
+                    <td>M4Pro</td>
+                </tr>
+                <tr>
+                    <td>배터리</td>
+                    <td>18시간</td>
+                    <td>22시간</td>
+                    <td>24시간</td>
+                </tr>
+                <tr>
+                    <td>무게</td>
+                    <td>1.24kg</td>
+                    <td>1.19kg</td>
+                    <td>1.6kg</td>
+                </tr>
+                <tr>
+                    <td>디스플레이</td>
+                    <td>Liquid Retina 13</td>
+                    <td>WQXGA 16</td>
+                    <td>ProMotion 14</td>
+                </tr>
+                <tr>
+                    <td>가격</td>
+                    <td>₩1,749,000</td>
+                    <td>₩1,750,000</td>
+                    <td>₩2,490,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="price-watch">
+        <h2>최저가 변동 추적</h2>
+        <div class="price-cards">
+            <div class="price-card">
+                <div class="price-card-title">맥북 에어 M4</div>
+                <div class="price-change">₩1,899,000 → ₩1,749,000</div>
+                <div style="font-size: 12px; color: var(--green-600); font-weight: 600; margin-top: 4px;">↓8% 하락</div>
+            </div>
+            <div class="price-card">
+                <div class="price-card-title">LG 그램 16</div>
+                <div class="price-change">₩1,890,000 → ₩1,750,000</div>
+                <div style="font-size: 12px; color: var(--green-600); font-weight: 600; margin-top: 4px;">↓7% 하락</div>
+            </div>
+        </div>
+        <a href="price-watch.html" class="price-watch-link">→ 전체 변동 보기</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>노써치</h4>
+                <a href="index.html">홈</a>
+                <a href="picks.html">노써치픽</a>
+                <a href="guides.html">구매가이드</a>
+            </div>
+            <div class="footer-col">
+                <h4>이용약관</h4>
+                <a href="#">서비스약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용규칙</a>
+            </div>
+            <div class="footer-col">
+                <h4>고객지원</h4>
+                <a href="#">문의하기</a>
+                <a href="#">피드백</a>
+                <a href="#">제휴제안</a>
+            </div>
+            <div class="footer-col">
+                <h4>정보</h4>
+                <p>© 2026 노써치. All rights reserved.</p>
+                <p style="margin-top: 8px;">검색 없이 최적 제품 발견</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
